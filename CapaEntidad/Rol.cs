@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CapaEntidad
-{  public class Rol
-        {
-          public int Id_Rol { get; set; }
-          public string Nombre { get; set; }
-          public int Activo { get; set; }
-        }
-    
+{  
+    public class Rol
+      {
+        public int Id_Rol { get; set; }
+        public string Nombre { get; set; }
+        public int Activo { get; set; }
+      }
 }
