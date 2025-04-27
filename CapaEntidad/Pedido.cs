@@ -16,7 +16,7 @@ namespace CapaEntidad
         public Usuario Id_Usuario { get; set; }
         public string Nro_factura { get; set; }
         public Mesa Id_Mesa { get; set; }
-        public List<PedidosDetalles> PedidosDetalles { get; set; }
+        public List<PedidoDetalle> PedidoDetalle { get; set; }
 
     }
 }
