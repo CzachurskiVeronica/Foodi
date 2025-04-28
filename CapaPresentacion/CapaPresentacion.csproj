@@ -53,12 +53,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormProductos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormProductos.Designer.cs">
-      <DependentUpon>FormProductos.cs</DependentUpon>
-    </Compile>
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,9 +67,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormProductos.resx">
-      <DependentUpon>FormProductos.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
