@@ -15,6 +15,6 @@ namespace CapaEntidad
         public int Activo { get; set; }
         public int Stock { get; set; }
         public int Stock_min { get; set; }
-        public Menu Menus { get; set; }
+        public Menu Menu { get; set; }
     }
 }
