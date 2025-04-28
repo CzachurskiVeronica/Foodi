@@ -54,7 +54,7 @@
             this.label.ForeColor = System.Drawing.Color.White;
             this.label.Location = new System.Drawing.Point(264, 68);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(195, 68);
+            this.label.Size = new System.Drawing.Size(224, 68);
             this.label.TabIndex = 1;
             this.label.Text = "FOODIE";
             // 
