@@ -32,5 +32,40 @@ namespace CapaPresentacion
             // Concatena los datos referentes al usuario
             labelUsuario.Text = actualUser.Nombre + " " + actualUser.Apellido;
         }
+
+        private void AbrirForm(IconMenuItem menu, Form formulario)
+        {
+            // Cuando no se selecciona un menu no se modifica el BackColor
+            if (MenuActivo != null)
+            {
+                MenuActivo.BackColor = Color.White;
+            }
+            // Si se ha seleccionado un menu especifico se modifica el BackColor
+            menu.BackColor = Color.White;
+            MenuActivo = menu;
+
+            // En caso de cambiar la vista de los formularios, los mismos se cierran
+            FormularioActivo?.Close();
+
+            FormularioActivo = formulario;
+            formulario.TopLevel = false;
+            formulario.FormBorderStyle = FormBorderStyle.None;
+            formulario.Dock = DockStyle.Fill;
+            formulario.BackColor = Color.White;
+
+            contenedor.Controls.Add(formulario);
+            formulario.Show();
+        }
+
+        private void menuusuario_Click(object sender, EventArgs e)
+        {
+            // Abre la pestaña de empleados
+            AbrirForm((IconMenuItem)sender, new FrmUsuario());
+        }
+
+        private void menuusuario_MouseEnter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
