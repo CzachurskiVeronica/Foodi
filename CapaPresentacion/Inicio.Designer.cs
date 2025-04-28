@@ -35,6 +35,7 @@
             this.menumesas = new FontAwesome.Sharp.IconMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.label1 = new System.Windows.Forms.Label();
+            this.labelUsuario = new System.Windows.Forms.Label();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,15 +48,16 @@
             this.menumenu,
             this.menuproductos,
             this.menumesas});
-            this.menu.Location = new System.Drawing.Point(0, 69);
+            this.menu.Location = new System.Drawing.Point(0, 126);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(1024, 78);
+            this.menu.Size = new System.Drawing.Size(1130, 78);
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip1";
             // 
             // menuusuario
             // 
             this.menuusuario.AutoSize = false;
+            this.menuusuario.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.menuusuario.ForeColor = System.Drawing.Color.Black;
             this.menuusuario.IconChar = FontAwesome.Sharp.IconChar.UserGear;
             this.menuusuario.IconColor = System.Drawing.Color.Black;
@@ -70,6 +72,7 @@
             // menumenu
             // 
             this.menumenu.AutoSize = false;
+            this.menumenu.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.menumenu.ForeColor = System.Drawing.Color.Black;
             this.menumenu.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck;
             this.menumenu.IconColor = System.Drawing.Color.Black;
@@ -84,6 +87,7 @@
             // menuproductos
             // 
             this.menuproductos.AutoSize = false;
+            this.menuproductos.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.menuproductos.ForeColor = System.Drawing.Color.Black;
             this.menuproductos.IconChar = FontAwesome.Sharp.IconChar.CalendarDay;
             this.menuproductos.IconColor = System.Drawing.Color.Black;
@@ -98,6 +102,7 @@
             // menumesas
             // 
             this.menumesas.AutoSize = false;
+            this.menumesas.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.menumesas.ForeColor = System.Drawing.Color.Black;
             this.menumesas.IconChar = FontAwesome.Sharp.IconChar.Table;
             this.menumesas.IconColor = System.Drawing.Color.Black;
@@ -117,7 +122,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menuStrip1.Size = new System.Drawing.Size(1024, 69);
+            this.menuStrip1.Size = new System.Drawing.Size(1130, 126);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip2";
             // 
@@ -127,24 +132,40 @@
             this.label1.BackColor = System.Drawing.Color.DodgerBlue;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(474, 19);
+            this.label1.Location = new System.Drawing.Point(705, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(154, 39);
             this.label1.TabIndex = 2;
             this.label1.Text = "FOODIE";
+            // 
+            // labelUsuario
+            // 
+            this.labelUsuario.AutoSize = true;
+            this.labelUsuario.BackColor = System.Drawing.Color.DodgerBlue;
+            this.labelUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUsuario.ForeColor = System.Drawing.Color.White;
+            this.labelUsuario.Location = new System.Drawing.Point(1062, 94);
+            this.labelUsuario.Name = "labelUsuario";
+            this.labelUsuario.Size = new System.Drawing.Size(81, 29);
+            this.labelUsuario.TabIndex = 3;
+            this.labelUsuario.Text = "label2";
             // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1024, 585);
+            this.ClientSize = new System.Drawing.Size(1130, 585);
+            this.Controls.Add(this.labelUsuario);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menu);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menu;
             this.Name = "Inicio";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Inicio_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.ResumeLayout(false);
@@ -161,6 +182,7 @@
         private FontAwesome.Sharp.IconMenuItem menuusuario;
         private FontAwesome.Sharp.IconMenuItem menumenu;
         private FontAwesome.Sharp.IconMenuItem menuproductos;
+        private System.Windows.Forms.Label labelUsuario;
     }
 }
 
