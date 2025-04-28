@@ -12,11 +12,9 @@ namespace CapaEntidad
         public float Total { get; set; }
         public string Fecha { get; set; }
         public Pago Id_Pago { get; set; }
-
         public Usuario Id_Usuario { get; set; }
         public string Nro_factura { get; set; }
         public Mesa Id_Mesa { get; set; }
-        public List<PedidoDetalle> PedidoDetalle { get; set; }
-
+        public List<PedidoDetalle> PedidoDetalles { get; set; }
     }
 }
