@@ -18,8 +18,8 @@ namespace CapaDatos
                 try
                 {
                     string query = @"SELECT p.Id_Producto, p.Nombre, p.Descripción, p.Precio, 
-                                            p.Activo, p.Stock, p.Stock_minimo,
-                                            m.Id_Menu, m.Nombre AS NombreMenu, m.Activo AS MenuActivo
+                                            p.Activo, p.Stock, p.Stock_minimo, p.Activo,
+                                            m.Id_Menu, m.Nombre AS NombreMenu
                                      FROM Producto p
                                      INNER JOIN Menu m ON p.Id_Menu = m.Id_Menu";
 
@@ -38,15 +38,15 @@ namespace CapaDatos
                                 Nombre = reader["Nombre"].ToString(),
                                 Descripcion = reader["Descripción"] != DBNull.Value ? reader["Descripción"].ToString() : "",
                                 Precio = Convert.ToDecimal(reader["Precio"]),
-                                Activo = Convert.ToInt32(reader["Activo"]),
                                 Stock = Convert.ToInt32(reader["Stock"]),
                                 Stock_min = Convert.ToInt32(reader["Stock_minimo"]),
                                 Menu = new Menu()
                                 {
                                     Id_Menu = Convert.ToInt32(reader["Id_Menu"]),
                                     Nombre = reader["NombreMenu"].ToString(),
-                                    Activo = Convert.ToInt32(reader["MenuActivo"])
-                                }
+                                },
+                                Activo = Convert.ToInt32(reader["Activo"]),
+
                             });
                         }
                     }
@@ -73,6 +73,7 @@ namespace CapaDatos
                     SqlCommand cmd = new SqlCommand("SP_REGISTROPRODUCTOS", conexion);
                     cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.AddWithValue("id_producto", producto.Id_producto);
                     cmd.Parameters.AddWithValue("Nombre", producto.Nombre);
                     cmd.Parameters.AddWithValue("Descripcion", producto.Descripcion ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("Precio", producto.Precio);
@@ -142,26 +143,31 @@ namespace CapaDatos
         }
 
         // Eliminar producto
-        public bool EliminarProducto(int idProducto, out string Mensaje)
+        public bool EliminarProducto(Producto producto, out string Mensaje)
         {
+            // Inicializa las variables recibidas por parametro
             bool respuesta = false;
             Mensaje = string.Empty;
 
             try
             {
+                // Se emplea la conexion definida previamente, esto es posible por la clase conexion creada en Conexion.cs
                 using (SqlConnection conexion = new SqlConnection(Conexion.CadenaConexion))
                 {
+                    // Parametros de entrada de procedimiento almacenado creado en la base de datos
                     SqlCommand cmd = new SqlCommand("SP_ELIMINARPRODUCTO", conexion);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("Id_Producto", producto.Id_producto);
 
-                    cmd.Parameters.AddWithValue("Id_Producto", idProducto);
-
+                    // Parametros de salida declarados en los procedimientos
                     cmd.Parameters.Add("Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 200).Direction = ParameterDirection.Output;
 
+                    // Se define que tipo de comando es el que se esta ejecutando
+                    cmd.CommandType = CommandType.StoredProcedure;
+
                     conexion.Open();
                     cmd.ExecuteNonQuery();
-
+                    // Salida desde el procedimiento almacenado para id producto y mensaje correspondiente predefinido
                     respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta"].Value);
                     Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
                 }
@@ -171,13 +177,7 @@ namespace CapaDatos
                 respuesta = false;
                 Mensaje = ex.Message;
             }
-
             return respuesta;
-        }
-
-        public bool EliminarProducto(Producto producto, out string mensaje)
-        {
-            throw new NotImplementedException();
         }
     }
 }

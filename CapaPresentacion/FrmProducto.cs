@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace CapaPresentacion
@@ -45,11 +46,11 @@ namespace CapaPresentacion
             cbomenu.ValueMember = "Valor";
             cbomenu.SelectedItem = 0;
 
-            /*
+            
             // Busqueda de datos de productos
             foreach (DataGridViewColumn columns in gridProductos.Columns)
             {
-                if (columns.Name == "Nombre" || columns.Name == "Codigo Producto" || columns.Name == "Estado" || columns.Name == "Categoria")
+                if (columns.Name == "Nombre" || columns.Name == "Estado" || columns.Name == "Menu")
                 {
                     cboBusqueda.Items.Add(new OpcionesComboButton() { Valor = columns.Name, Texto = columns.HeaderText });
                 }
@@ -57,8 +58,7 @@ namespace CapaPresentacion
                 cboBusqueda.DisplayMember = "Texto";
                 cboBusqueda.ValueMember = "Valor";
             }
-            */
-
+            
             // Mostrar todos los productos
             List<Producto> listaProductos = new CN_Producto().Listar();
 
@@ -66,10 +66,11 @@ namespace CapaPresentacion
             foreach (Producto productos in listaProductos)
             {
                 gridProductos.Rows.Add(new object[] {"", productos.Id_producto, productos.Nombre,
-                                       productos.Descripcion, productos.Precio, productos.Activo == 1 ? 1 : 0,
-                                       productos.Activo == 1 ? "Activo" : "No Activo", productos.Stock, productos.Stock_min, 
+                                       productos.Descripcion, productos.Precio,
+                                       productos.Stock, productos.Stock_min, 
                                        productos.Menu.Id_Menu, productos.Menu.Nombre,
-                                        });
+                                       productos.Activo == 1 ? "Activo" : "No Activo",
+                                       productos.Activo == 1 ? 1 : 0,});
             }
         }
 
@@ -84,7 +85,7 @@ namespace CapaPresentacion
 
             Producto producto = new Producto()
             {
-                Id_producto = Convert.ToInt32(txtcodigo.Text),
+                Id_producto = Convert.ToInt32(textId.Text),
                 Nombre = txtnombre.Text.Trim(),
                 Descripcion = txtdescripcion.Text.Trim(),
                 Precio = Convert.ToDecimal(txtprecio.Text),
@@ -100,23 +101,18 @@ namespace CapaPresentacion
             if (producto.Id_producto == 0)
             {
                 // Registro nuevo
-                int idGenerado = new CN_Producto().Registrar(producto, out mensaje);
+                int registroProducto = new CN_Producto().Registrar(producto, out mensaje);
 
-                if (idGenerado != 0)
+                if (registroProducto != 0)
                 {
                     gridProductos.Rows.Add(new object[]
-                    {
-                "",
-                idGenerado,
-                producto.Nombre,
-                producto.Descripcion,
-                producto.Precio.ToString("N2"),
-                producto.Activo,
-                producto.Activo == 1 ? "Activo" : "No Activo",
-                producto.Stock,
-                producto.Stock_min,
-                producto.Menu.Id_Menu,
-                ((OpcionesComboButton)cbomenu.SelectedItem).Texto
+                    {"", registroProducto, producto.Nombre, producto.Descripcion, producto.Precio.ToString("N2"),
+                                                    producto.Stock,
+                                                    producto.Stock_min,
+                                                   ((OpcionesComboButton)cbomenu.SelectedItem).Valor.ToString(),
+                                                   ((OpcionesComboButton)cbomenu.SelectedItem).Texto.ToString(),
+                                                   ((OpcionesComboButton)cboestado.SelectedItem).Valor.ToString(),
+                                                   ((OpcionesComboButton)cboestado.SelectedItem).Texto.ToString(),
                     });
 
                     MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -135,16 +131,16 @@ namespace CapaPresentacion
 
                 if (resultado)
                 {
-                    if (int.TryParse(txtindice.Text, out int indiceFila) && indiceFila >= 0)
+                    if (int.TryParse(txtIndice.Text, out int indiceFila) && indiceFila >= 0)
                     {
                         DataGridViewRow row = gridProductos.Rows[indiceFila];
-                        row.Cells["Id"].Value = txtcodigo.Text;
+                        row.Cells["Id"].Value = textId.Text;
                         row.Cells["Nombre"].Value = txtnombre.Text;
                         row.Cells["Descripcion"].Value = txtdescripcion.Text;
                         row.Cells["Precio"].Value = txtprecio.Text;
                         row.Cells["Stock"].Value = txtstock.Text;
-                        row.Cells["Stock_min"].Value = txtstockmin.Text;
-                        row.Cells["Id_Menu"].Value = ((OpcionesComboButton)cbomenu.SelectedItem).Valor.ToString();
+                        row.Cells["StockMin"].Value = txtstockmin.Text;
+                        row.Cells["IdMenu"].Value = ((OpcionesComboButton)cbomenu.SelectedItem).Valor.ToString();
                         row.Cells["Menu"].Value = ((OpcionesComboButton)cbomenu.SelectedItem).Texto.ToString();
                         row.Cells["EstadoValor"].Value = ((OpcionesComboButton)cboestado.SelectedItem).Valor.ToString();
                         row.Cells["Estado"].Value = ((OpcionesComboButton)cboestado.SelectedItem).Texto.ToString();
@@ -163,8 +159,8 @@ namespace CapaPresentacion
 
         private void BorrarDatos()
         {
-            txtindice.Text = "-1";
-            //txtid.Text = "0";
+            txtIndice.Text = "-1";
+            textId.Text = "0";
             txtnombre.Text = "";
             txtdescripcion.Text = "";
             txtprecio.Text = "";
@@ -173,16 +169,16 @@ namespace CapaPresentacion
             cbomenu.SelectedIndex = 0;
             cboestado.SelectedIndex = 0;
 
+            // Para marcar el producto recien agregado o editado
             txtnombre.Select();
         }
 
-
         private bool ValidarCampos()
         {
-            if (string.IsNullOrWhiteSpace(txtcodigo.Text))
+            if (string.IsNullOrWhiteSpace(txtIndice.Text))
             {
                 MessageBox.Show("Por favor, ingrese el código del producto.", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtcodigo.Focus();
+                txtIndice.Focus();
                 return false;
             }
 
@@ -238,22 +234,161 @@ namespace CapaPresentacion
             return true;
         }
 
+        private void iconBusqueda_Click(object sender, EventArgs e)
+        {
+            // Verifica si se ha seleccionado una columna para buscar
+            if (cboBusqueda.SelectedItem == null)
+            {
+                MessageBox.Show("Debe elegir una columna por la cual realizar la búsqueda.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
+            // Filtros de busqueda si coinciden debe poder listar la busuqeda realizada
+            string filtroColumna = ((OpcionesComboButton)cboBusqueda.SelectedItem).Valor.ToString();
 
+            if (gridProductos.Rows.Count > 0)
+            {
+                // Recorre cada fila del grid de usuarios
+                foreach (DataGridViewRow row in gridProductos.Rows)
+                {
+                    if (row.Cells[filtroColumna].Value.ToString().Trim().ToUpper().Contains(textBusqueda.Text.Trim().ToUpper()))
+                        row.Visible = true;
+                    else
+                        row.Visible = false;
+                }
+            }
+        }
 
+        private void iconBorrar_Click(object sender, EventArgs e)
+        {
+            // Limpia el texto de busqueda ingresado
+            textBusqueda.Text = "";
+            cboBusqueda.SelectedItem = null;
 
+            // Recorre cada fila del grid de productos para mostrar todos los productos existentes
+            foreach (DataGridViewRow row in gridProductos.Rows)
+            {
+                row.Visible = true;
+            }
+        }
 
+        private void limpiarCampos_Click_1(object sender, EventArgs e)
+        {
+            BorrarDatos();
+        }
 
+        private void gridProductos_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
+        {
 
+        }
 
+        private void gridProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (gridProductos.Columns[e.ColumnIndex].Name == "btnseleccionar")
+            {
+                // Almacena la fila seleccionada
+                int indice = e.RowIndex;
 
+                // A partir de la fila seleccionada carga en cada uno de los campos, los datos del producto elegido
+                if (indice >= 0)
+                {
+                    txtIndice.Text = indice.ToString();
+                    textId.Text = gridProductos.Rows[indice].Cells["Id"].Value.ToString();
+                    txtnombre.Text = gridProductos.Rows[indice].Cells["Nombre"].Value.ToString();
+                    txtdescripcion.Text = gridProductos.Rows[indice].Cells["Descripcion"].Value.ToString();
+                    txtstock.Text = gridProductos.Rows[indice].Cells["Stock"].Value.ToString();
+                    txtstockmin.Text = gridProductos.Rows[indice].Cells["StockMin"].Value.ToString();
+                    txtprecio.Text = gridProductos.Rows[indice].Cells["Precio"].Value.ToString();
 
+                    // Para obtener el tipo de categoria correspondiente al producto
+                    foreach (OpcionesComboButton opciones in cbomenu.Items)
+                    {
+                        if (Convert.ToInt32(opciones.Valor) == Convert.ToInt32(gridProductos.Rows[indice].Cells["IdMenu"].Value))
+                        {
+                            int indice_combo = cbomenu.Items.IndexOf(opciones);
+                            cbomenu.SelectedIndex = indice_combo;
+                            break;
+                        }
+                    }
 
+                    // Para obtener el tipo de estado correspondiente al producto
+                    foreach (OpcionesComboButton estado in cboestado.Items)
+                    {
+                        if (Convert.ToInt32(estado.Valor) == Convert.ToInt32(gridProductos.Rows[indice].Cells["EstadoValor"].Value))
+                        {
+                            int indice_combo = cboestado.Items.IndexOf(estado);
+                            cboestado.SelectedIndex = indice_combo;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(textId.Text) != 0)
+            {
+                if (MessageBox.Show("Desea eliminar el producto?", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string mensaje = string.Empty;
 
+                    Producto producto = new Producto()
+                    {
+                        Id_producto = Convert.ToInt32(textId.Text),
+                        Activo = 0
+                    };
 
+                    bool respuesta = new CN_Producto().Eliminar(producto, out mensaje);
 
+                    if (respuesta)
+                    {
+                        foreach (DataGridViewRow row in gridProductos.Rows)
+                        {
+                            if (Convert.ToInt32(row.Cells["Id"].Value) == producto.Id_producto)
+                            {
+                                row.Cells["EstadoValor"].Value = producto.Activo.ToString();
+                                row.Cells["Estado"].Value = "No Activo";
+                                break;
+                            }
+                        }
+                        MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        BorrarDatos();
+                    }
+                    else
+                    {
+                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+        }
 
+        private void txtstock_TextChanged(object sender, EventArgs e)
+        {
+            // Permite solo números
+            string pattern = @"[^\d]";
 
+            // Remover caracteres que no coincidan solo números
+            txtstock.Text = System.Text.RegularExpressions.Regex.Replace(txtstock.Text, pattern, "");
+        }
+
+        private void txtprecio_TextChanged(object sender, EventArgs e)
+        {
+
+            // Permite solo números y una coma
+            string pattern = @"[^\d,]";
+
+            // Remover caracteres que no sean números o coma
+            txtprecio.Text = System.Text.RegularExpressions.Regex.Replace(txtprecio.Text, pattern, "");
+        }
+
+        private void txtstockmin_TextChanged(object sender, EventArgs e)
+        {
+            // Permite solo números
+            string pattern = @"[^\d]";
+
+            // Remover caracteres que no coincidan solo números
+            txtstockmin.Text = System.Text.RegularExpressions.Regex.Replace(txtstockmin.Text, pattern, "");
+        }
     }
 }

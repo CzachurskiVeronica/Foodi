@@ -45,6 +45,7 @@
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
             this.iconButton3 = new FontAwesome.Sharp.IconButton();
             this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -55,6 +56,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(417, 886);
             this.label1.TabIndex = 0;
+            this.label1.Visible = false;
             // 
             // label2
             // 
@@ -65,6 +67,7 @@
             this.label2.Size = new System.Drawing.Size(104, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "Nro Documento:";
+            this.label2.Visible = false;
             // 
             // label3
             // 
@@ -75,6 +78,7 @@
             this.label3.Size = new System.Drawing.Size(60, 16);
             this.label3.TabIndex = 2;
             this.label3.Text = "Apellido:";
+            this.label3.Visible = false;
             // 
             // label4
             // 
@@ -85,6 +89,7 @@
             this.label4.Size = new System.Drawing.Size(59, 16);
             this.label4.TabIndex = 3;
             this.label4.Text = "Nombre:";
+            this.label4.Visible = false;
             // 
             // label5
             // 
@@ -95,6 +100,7 @@
             this.label5.Size = new System.Drawing.Size(79, 16);
             this.label5.TabIndex = 4;
             this.label5.Text = "Contraseña:";
+            this.label5.Visible = false;
             // 
             // textDocumento
             // 
@@ -103,6 +109,7 @@
             this.textDocumento.Name = "textDocumento";
             this.textDocumento.Size = new System.Drawing.Size(341, 32);
             this.textDocumento.TabIndex = 5;
+            this.textDocumento.Visible = false;
             // 
             // textApellido
             // 
@@ -111,6 +118,7 @@
             this.textApellido.Name = "textApellido";
             this.textApellido.Size = new System.Drawing.Size(341, 32);
             this.textApellido.TabIndex = 6;
+            this.textApellido.Visible = false;
             // 
             // textNombre
             // 
@@ -119,6 +127,7 @@
             this.textNombre.Name = "textNombre";
             this.textNombre.Size = new System.Drawing.Size(341, 32);
             this.textNombre.TabIndex = 7;
+            this.textNombre.Visible = false;
             // 
             // textContrasenia
             // 
@@ -127,6 +136,7 @@
             this.textContrasenia.Name = "textContrasenia";
             this.textContrasenia.Size = new System.Drawing.Size(341, 32);
             this.textContrasenia.TabIndex = 8;
+            this.textContrasenia.Visible = false;
             // 
             // label6
             // 
@@ -137,6 +147,7 @@
             this.label6.Size = new System.Drawing.Size(31, 16);
             this.label6.TabIndex = 9;
             this.label6.Text = "Rol:";
+            this.label6.Visible = false;
             // 
             // cboRol
             // 
@@ -146,6 +157,7 @@
             this.cboRol.Name = "cboRol";
             this.cboRol.Size = new System.Drawing.Size(341, 24);
             this.cboRol.TabIndex = 10;
+            this.cboRol.Visible = false;
             // 
             // label7
             // 
@@ -156,6 +168,7 @@
             this.label7.Size = new System.Drawing.Size(53, 16);
             this.label7.TabIndex = 11;
             this.label7.Text = "Estado:";
+            this.label7.Visible = false;
             // 
             // cboEstado
             // 
@@ -165,6 +178,7 @@
             this.cboEstado.Name = "cboEstado";
             this.cboEstado.Size = new System.Drawing.Size(341, 24);
             this.cboEstado.TabIndex = 12;
+            this.cboEstado.Visible = false;
             // 
             // iconButton1
             // 
@@ -178,6 +192,7 @@
             this.iconButton1.TabIndex = 13;
             this.iconButton1.Text = "GUARDAR";
             this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.Visible = false;
             // 
             // iconButton2
             // 
@@ -191,6 +206,7 @@
             this.iconButton2.TabIndex = 14;
             this.iconButton2.Text = "EDITAR";
             this.iconButton2.UseVisualStyleBackColor = true;
+            this.iconButton2.Visible = false;
             // 
             // iconButton3
             // 
@@ -204,6 +220,7 @@
             this.iconButton3.TabIndex = 15;
             this.iconButton3.Text = "ELIMINAR";
             this.iconButton3.UseVisualStyleBackColor = true;
+            this.iconButton3.Visible = false;
             // 
             // label8
             // 
@@ -215,6 +232,17 @@
             this.label8.Size = new System.Drawing.Size(202, 25);
             this.label8.TabIndex = 16;
             this.label8.Text = "DETALLE USUARIO:";
+            this.label8.Visible = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(568, 417);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(455, 52);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "EN CONSTRUCCION";
             // 
             // FrmUsuario
             // 
@@ -222,6 +250,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
             this.ClientSize = new System.Drawing.Size(1591, 886);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.iconButton3);
             this.Controls.Add(this.iconButton2);
@@ -265,5 +294,6 @@
         private FontAwesome.Sharp.IconButton iconButton2;
         private FontAwesome.Sharp.IconButton iconButton3;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }

@@ -63,11 +63,6 @@ namespace CapaPresentacion
             AbrirForm((IconMenuItem)sender, new FrmUsuario());
         }
 
-        private void menuusuario_MouseEnter(object sender, EventArgs e)
-        {
-
-        }
-
         private void menumenu_Click(object sender, EventArgs e)
         {
             AbrirForm((IconMenuItem)sender, new FrmMenu());
@@ -76,6 +71,52 @@ namespace CapaPresentacion
         private void menuproductos_Click(object sender, EventArgs e)
         {
             AbrirForm((IconMenuItem)sender, new FrmProducto());
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Icon_MouseEnter(object sender, EventArgs e)
+        {
+            // Cambia el cursor a mano cuando pase el mouse sobre el ítem
+            this.Cursor = Cursors.Hand;
+        }
+
+        private void Icon_MouseLeave(object sender, EventArgs e)
+        {
+            // Vuelve el cursor a su estado predeterminado cuando salga del ítem
+            this.Cursor = Cursors.Default;
+        }
+        private void menuacerca_MouseEnter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void iconMenuItem1_MouseEnter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuproductos_MouseEnter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menumenu_MouseEnter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuusuario_MouseEnter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void iconMesas_Click(object sender, EventArgs e)
+        {
+            AbrirForm((IconMenuItem)sender, new FrmMesas());
         }
     }
 }

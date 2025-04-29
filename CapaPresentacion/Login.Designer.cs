@@ -66,9 +66,9 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(105, 162);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 25);
+            this.label2.Size = new System.Drawing.Size(118, 25);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Usuario:";
+            this.label2.Text = "Documento:";
             // 
             // label3
             // 
@@ -84,6 +84,7 @@
             // 
             // textUsuario
             // 
+            this.textUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textUsuario.Location = new System.Drawing.Point(299, 156);
             this.textUsuario.Multiline = true;
             this.textUsuario.Name = "textUsuario";
@@ -93,6 +94,7 @@
             // 
             // textPassword
             // 
+            this.textPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textPassword.Location = new System.Drawing.Point(299, 214);
             this.textPassword.Multiline = true;
             this.textPassword.Name = "textPassword";
