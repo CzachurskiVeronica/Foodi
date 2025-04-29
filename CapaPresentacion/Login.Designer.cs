@@ -86,10 +86,12 @@
             // 
             this.textUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textUsuario.Location = new System.Drawing.Point(299, 156);
+            this.textUsuario.MaxLength = 8;
             this.textUsuario.Multiline = true;
             this.textUsuario.Name = "textUsuario";
             this.textUsuario.Size = new System.Drawing.Size(189, 31);
             this.textUsuario.TabIndex = 4;
+            this.textUsuario.TextChanged += new System.EventHandler(this.textUsuario_TextChanged);
             this.textUsuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textUsuario_KeyDown);
             // 
             // textPassword

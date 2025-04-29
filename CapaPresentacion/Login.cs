@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using CapaEntidad;
 using CapaNegocio;
 using CapaDatos;
+using System.Windows.Controls;
 
 namespace CapaPresentacion
 {
@@ -44,7 +45,6 @@ namespace CapaPresentacion
                 if (!string.IsNullOrEmpty(textUsuario.Text) && !string.IsNullOrEmpty(textPassword.Text))
                 {
                     var listaUsuarios = new CN_Usuario().Listar();
-                    MessageBox.Show("Cantidad de usuarios: " + listaUsuarios.Count);
 
                     Usuario userData = listaUsuarios.Where(user => user.DNI == Convert.ToInt32(textUsuario.Text)).FirstOrDefault();
 
@@ -109,6 +109,15 @@ namespace CapaPresentacion
         private void textPassword_KeyDown(object sender, KeyEventArgs e)
         {
 
+        }
+
+        private void textUsuario_TextChanged(object sender, EventArgs e)
+        {
+            // Permite solo números
+            string pattern = @"[^\d]";
+
+            // Remover caracteres que no coincidan solo números
+            textUsuario.Text = System.Text.RegularExpressions.Regex.Replace(textUsuario.Text, pattern, "");
         }
     }
 }
