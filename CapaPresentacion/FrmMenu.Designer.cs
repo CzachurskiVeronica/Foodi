@@ -42,11 +42,12 @@
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.BtnSeleccionar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtIndice = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -72,7 +73,7 @@
             this.btneliminar.IconColor = System.Drawing.Color.Black;
             this.btneliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btneliminar.Location = new System.Drawing.Point(16, 497);
-            this.btneliminar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btneliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btneliminar.Name = "btneliminar";
             this.btneliminar.Size = new System.Drawing.Size(252, 31);
             this.btneliminar.TabIndex = 31;
@@ -86,19 +87,20 @@
             this.btnguardar.IconColor = System.Drawing.Color.Black;
             this.btnguardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnguardar.Location = new System.Drawing.Point(16, 427);
-            this.btnguardar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnguardar.Margin = new System.Windows.Forms.Padding(2);
             this.btnguardar.Name = "btnguardar";
             this.btnguardar.Size = new System.Drawing.Size(252, 30);
             this.btnguardar.TabIndex = 30;
             this.btnguardar.Text = "GUARDAR";
             this.btnguardar.UseVisualStyleBackColor = true;
+            this.btnguardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // cboestado
             // 
             this.cboestado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboestado.FormattingEnabled = true;
             this.cboestado.Location = new System.Drawing.Point(16, 101);
-            this.cboestado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboestado.Margin = new System.Windows.Forms.Padding(2);
             this.cboestado.Name = "cboestado";
             this.cboestado.Size = new System.Drawing.Size(254, 21);
             this.cboestado.TabIndex = 29;
@@ -117,7 +119,7 @@
             // txtnombre
             // 
             this.txtnombre.Location = new System.Drawing.Point(16, 51);
-            this.txtnombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtnombre.Margin = new System.Windows.Forms.Padding(2);
             this.txtnombre.Multiline = true;
             this.txtnombre.Name = "txtnombre";
             this.txtnombre.Size = new System.Drawing.Size(252, 27);
@@ -141,12 +143,13 @@
             this.btnmodificar.IconColor = System.Drawing.Color.Black;
             this.btnmodificar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnmodificar.Location = new System.Drawing.Point(16, 462);
-            this.btnmodificar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnmodificar.Margin = new System.Windows.Forms.Padding(2);
             this.btnmodificar.Name = "btnmodificar";
             this.btnmodificar.Size = new System.Drawing.Size(252, 30);
             this.btnmodificar.TabIndex = 33;
             this.btnmodificar.Text = "MODIFICAR";
             this.btnmodificar.UseVisualStyleBackColor = true;
+            this.btnmodificar.Click += new System.EventHandler(this.btnmodificar_Click);
             // 
             // groupBox1
             // 
@@ -155,9 +158,9 @@
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(314, 7);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(532, 67);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
@@ -170,18 +173,19 @@
             this.btnbuscar.IconColor = System.Drawing.Color.Black;
             this.btnbuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnbuscar.Location = new System.Drawing.Point(399, 21);
-            this.btnbuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnbuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnbuscar.Name = "btnbuscar";
             this.btnbuscar.Size = new System.Drawing.Size(100, 30);
             this.btnbuscar.TabIndex = 31;
             this.btnbuscar.Text = "Buscar";
             this.btnbuscar.UseVisualStyleBackColor = true;
+            this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
             // 
             // txtbusqueda
             // 
             this.txtbusqueda.BackColor = System.Drawing.Color.DodgerBlue;
             this.txtbusqueda.Location = new System.Drawing.Point(55, 23);
-            this.txtbusqueda.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtbusqueda.Margin = new System.Windows.Forms.Padding(2);
             this.txtbusqueda.Multiline = true;
             this.txtbusqueda.Name = "txtbusqueda";
             this.txtbusqueda.Size = new System.Drawing.Size(132, 27);
@@ -204,9 +208,9 @@
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(314, 79);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(532, 462);
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
@@ -221,22 +225,12 @@
             this.Nombre,
             this.Estado});
             this.dataGridView1.Location = new System.Drawing.Point(4, 22);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(524, 435);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(310, 609);
-            this.label1.TabIndex = 17;
             // 
             // BtnSeleccionar
             // 
@@ -258,12 +252,33 @@
             this.Estado.HeaderText = "Estado";
             this.Estado.Name = "Estado";
             // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(310, 609);
+            this.label1.TabIndex = 17;
+            // 
+            // txtIndice
+            // 
+            this.txtIndice.Location = new System.Drawing.Point(235, 9);
+            this.txtIndice.Margin = new System.Windows.Forms.Padding(2);
+            this.txtIndice.Multiline = true;
+            this.txtIndice.Name = "txtIndice";
+            this.txtIndice.Size = new System.Drawing.Size(23, 27);
+            this.txtIndice.TabIndex = 40;
+            this.txtIndice.Text = "-1";
+            // 
             // FrmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
             this.ClientSize = new System.Drawing.Size(856, 609);
+            this.Controls.Add(this.txtIndice);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnmodificar);
@@ -275,9 +290,10 @@
             this.Controls.Add(this.txtnombre);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmMenu";
             this.Text = "FrmMenu";
+            this.Load += new System.EventHandler(this.FrmMenu_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -308,5 +324,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.TextBox txtIndice;
     }
 }
