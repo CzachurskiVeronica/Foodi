@@ -70,7 +70,7 @@ namespace CapaDatos
             {
                 using (SqlConnection conexion = new SqlConnection(Conexion.CadenaConexion))
                 {
-                    SqlCommand cmd = new SqlCommand("SP_REGISTRARPRODUCTO", conexion);
+                    SqlCommand cmd = new SqlCommand("SP_REGISTROPRODUCTOS", conexion);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("Nombre", producto.Nombre);

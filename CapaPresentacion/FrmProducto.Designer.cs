@@ -68,6 +68,7 @@
             this.StockMin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdMenu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Menu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtindice = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridProductos)).BeginInit();
@@ -111,6 +112,7 @@
             this.btnguardar.TabIndex = 30;
             this.btnguardar.Text = "GUARDAR";
             this.btnguardar.UseVisualStyleBackColor = true;
+            this.btnguardar.Click += new System.EventHandler(this.btnguardar_Click);
             // 
             // cboestado
             // 
@@ -181,12 +183,14 @@
             // 
             // txtcodigo
             // 
-            this.txtcodigo.Location = new System.Drawing.Point(153, 50);
+            this.txtcodigo.Location = new System.Drawing.Point(300, 0);
             this.txtcodigo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtcodigo.Multiline = true;
             this.txtcodigo.Name = "txtcodigo";
-            this.txtcodigo.Size = new System.Drawing.Size(204, 32);
+            this.txtcodigo.Size = new System.Drawing.Size(38, 32);
             this.txtcodigo.TabIndex = 22;
+            this.txtcodigo.Text = "0";
+            this.txtcodigo.Visible = false;
             // 
             // label5
             // 
@@ -222,11 +226,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(11, 53);
+            this.label2.Location = new System.Drawing.Point(18, 56);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 16);
+            this.label2.Size = new System.Drawing.Size(0, 16);
             this.label2.TabIndex = 18;
-            this.label2.Text = "Codigo:";
             // 
             // label1
             // 
@@ -234,7 +237,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(413, 750);
+            this.label1.Size = new System.Drawing.Size(413, 677);
             this.label1.TabIndex = 17;
             // 
             // btnmodificar
@@ -477,12 +480,21 @@
             this.Menu.Name = "Menu";
             this.Menu.Width = 125;
             // 
+            // txtindice
+            // 
+            this.txtindice.Location = new System.Drawing.Point(353, 6);
+            this.txtindice.Name = "txtindice";
+            this.txtindice.Size = new System.Drawing.Size(41, 22);
+            this.txtindice.TabIndex = 32;
+            this.txtindice.Visible = false;
+            // 
             // FrmProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
-            this.ClientSize = new System.Drawing.Size(1141, 750);
+            this.ClientSize = new System.Drawing.Size(1141, 677);
+            this.Controls.Add(this.txtindice);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtstockmin);
@@ -561,5 +573,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn StockMin;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdMenu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Menu;
+        private System.Windows.Forms.TextBox txtindice;
     }
 }
