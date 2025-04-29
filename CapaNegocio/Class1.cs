@@ -11,7 +11,7 @@ namespace CapaNegocio
     public class CN_Menu
     {
         // Retorna la lista de la Capa de Datos menu
-        private CD_Menu obj_menu = new CD_Menu();
+        private CD_Menuu obj_menu = new CD_Menuu();
 
         public List<Menu> Listar()
         {

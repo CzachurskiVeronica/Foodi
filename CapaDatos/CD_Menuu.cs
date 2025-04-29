@@ -9,7 +9,7 @@ using CapaEntidad;
 
 namespace CapaDatos
 {
-    public class CD_Menu
+    public class CD_Menuu
     {
         // Función que permite listar todos los menús
         public List<Menu> Listar()
