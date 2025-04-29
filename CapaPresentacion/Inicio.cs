@@ -72,5 +72,10 @@ namespace CapaPresentacion
         {
             AbrirForm((IconMenuItem)sender, new FrmMenu());
         }
+
+        private void menuproductos_Click(object sender, EventArgs e)
+        {
+            AbrirForm((IconMenuItem)sender, new FrmProducto());
+        }
     }
 }

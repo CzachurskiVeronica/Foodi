@@ -390,7 +390,7 @@
             this.StockMin,
             this.IdMenu,
             this.Menu});
-            this.gridProductos.Location = new System.Drawing.Point(5, 27);
+            this.gridProductos.Location = new System.Drawing.Point(4, 25);
             this.gridProductos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gridProductos.Name = "gridProductos";
             this.gridProductos.RowHeadersWidth = 51;
@@ -475,7 +475,6 @@
             this.Menu.HeaderText = "Menu";
             this.Menu.MinimumWidth = 6;
             this.Menu.Name = "Menu";
-            this.Menu.Visible = false;
             this.Menu.Width = 125;
             // 
             // FrmProducto
