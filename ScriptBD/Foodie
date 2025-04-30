@@ -222,4 +222,129 @@ BEGIN
 		END
 END 
 
+------------------------------------------------------------------------------------------------
+--------------------------------------TABLA PRODUCTOS-------------------------------------------
+------------------------------------------------------------------------------------------------
 
+/* REGISTRO DE PRODUCTO*/
+GO
+CREATE OR ALTER PROC SP_REGISTROPRODUCTOS
+(
+    @id_producto INT,
+    @id_menu INT,
+    @nombre VARCHAR(50),
+    @descripcion VARCHAR(100),
+    @stock INT,
+    @stock_minimo INT,
+    @precio FLOAT,
+    @activo INT,
+    @Respuesta INT OUTPUT,
+    @Mensaje VARCHAR(200) OUTPUT
+)
+AS
+BEGIN
+    SET @Respuesta = 0
+    SET @Mensaje = ''
+
+    -- Validar que no exista otro producto con el mismo código
+    IF EXISTS (SELECT 1 FROM dbo.Producto WHERE Nombre = @nombre)
+    BEGIN
+        SET @Mensaje = 'Producto ya existente con el mismo nombre.'
+        RETURN
+    END
+
+    INSERT INTO dbo.Producto (Id_Menu, Nombre, Descripción, Stock, Stock_minimo, Precio, Activo)
+    VALUES (@id_menu, @nombre, @descripcion, @stock, @stock_minimo, @precio, @activo)
+
+    SET @Respuesta = SCOPE_IDENTITY(); -- Obtener el ID generado
+    SET @Mensaje = 'Producto creado exitosamente.'
+END
+
+
+/* EDICION DE PRODUCTO */
+
+GO
+CREATE OR ALTER PROC SP_EDITARPRODUCTO
+(
+    @id_producto INT,
+    @id_menu INT,
+    @nombre VARCHAR(50),
+    @descripcion VARCHAR(100),
+    @stock INT,
+    @stock_minimo INT,
+    @precio FLOAT,
+    @activo INT,
+    @Respuesta INT OUTPUT,
+    @Mensaje VARCHAR(200) OUTPUT
+)
+AS
+BEGIN
+    SET @Respuesta = 1
+    SET @Mensaje = ''
+
+    -- Validar si el producto ya está eliminado
+    IF EXISTS (SELECT 1 FROM dbo.Producto WHERE Id_Producto = @id_producto AND Activo = 0)
+    BEGIN
+        -- Permitir solo cambiar 'Activo' para reactivarlo
+        IF @activo = 1
+        BEGIN
+            UPDATE dbo.Producto
+            SET Activo = @activo
+            WHERE Id_Producto = @id_producto
+
+            SET @Mensaje = 'Producto reactivado exitosamente.'
+            RETURN
+        END
+        ELSE
+        BEGIN
+            SET @Respuesta = 0
+            SET @Mensaje = 'No se pueden editar los campos de un producto eliminado.' + CHAR(13) + CHAR(10) + 'Necesita ser reactivado.';
+            RETURN
+        END
+    END
+
+    -- Actualizar el producto
+    UPDATE dbo.Producto
+    SET 
+	    Id_Menu = @id_menu,
+        Nombre = @nombre,
+        Descripción = @descripcion,
+		Stock = @stock,
+        Stock_minimo = @stock_minimo,
+        Precio = @precio,
+        Activo = @activo
+    WHERE Id_Producto = @id_producto
+
+    SET @Mensaje = 'Producto editado exitosamente.'
+END
+
+
+/* ELIMINACION DE PRODUCTO */
+GO
+CREATE OR ALTER PROC SP_ELIMINARPRODUCTO
+(
+    @id_producto INT,
+    @Respuesta BIT OUTPUT,
+    @Mensaje VARCHAR(200) OUTPUT
+)
+AS
+BEGIN
+    SET @Respuesta = 1
+    SET @Mensaje = ''
+
+    -- Verificar si ya está eliminado
+    IF EXISTS (SELECT 1 FROM dbo.Producto WHERE Id_Producto = @id_producto AND Activo = 0)
+    BEGIN
+        SET @Respuesta = 0
+        SET @Mensaje = 'El producto ya se encuentra eliminado.'
+        RETURN
+    END
+
+    -- Marcar el producto como inactivo
+    UPDATE dbo.Producto
+    SET Activo = 0
+    WHERE Id_Producto = @id_producto
+
+    SET @Mensaje = 'Producto eliminado exitosamente.'
+	SET @Respuesta = 1;
+END
