@@ -13,10 +13,12 @@ namespace CapaDatos
         {
             List<Producto> lista = new List<Producto>();
 
+            // Toma la conexion definida en la clase Conexion
             using (SqlConnection conexion = new SqlConnection(Conexion.CadenaConexion))
             {
                 try
                 {
+                    // Se define la consulta SQL para obtener los productos y sus respectivos menús
                     string query = @"SELECT p.Id_Producto, p.Nombre, p.Descripción, p.Precio, 
                                             p.Activo, p.Stock, p.Stock_minimo, p.Activo,
                                             m.Id_Menu, m.Nombre AS NombreMenu
@@ -28,10 +30,12 @@ namespace CapaDatos
 
                     conexion.Open();
 
+                    // Se ejecuta el comando y se obtiene un SqlDataReader para leer los resultados
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
+                            // Se crea un nuevo objeto Producto y se asignan los valores leídos
                             lista.Add(new Producto()
                             {
                                 Id_producto = Convert.ToInt32(reader["Id_Producto"]),
@@ -68,8 +72,10 @@ namespace CapaDatos
 
             try
             {
+                // Toma la conexion definida en la clase Conexion
                 using (SqlConnection conexion = new SqlConnection(Conexion.CadenaConexion))
                 {
+                    // Se define el procedimiento almacenado para registrar productos
                     SqlCommand cmd = new SqlCommand("SP_REGISTROPRODUCTOS", conexion);
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -109,11 +115,14 @@ namespace CapaDatos
 
             try
             {
+                // Se toma la conexion definida en la clase Conexion
                 using (SqlConnection conexion = new SqlConnection(Conexion.CadenaConexion))
                 {
+                    // Se define el procedimiento almacenado para editar productos
                     SqlCommand cmd = new SqlCommand("SP_EDITARPRODUCTO", conexion);
                     cmd.CommandType = CommandType.StoredProcedure;
 
+                    // Se definen los parametros de entrada del procedimiento almacenado
                     cmd.Parameters.AddWithValue("Id_Producto", producto.Id_producto);
                     cmd.Parameters.AddWithValue("Nombre", producto.Nombre);
                     cmd.Parameters.AddWithValue("Descripcion", producto.Descripcion ?? (object)DBNull.Value);
@@ -167,6 +176,7 @@ namespace CapaDatos
 
                     conexion.Open();
                     cmd.ExecuteNonQuery();
+
                     // Salida desde el procedimiento almacenado para id producto y mensaje correspondiente predefinido
                     respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta"].Value);
                     Mensaje = cmd.Parameters["Mensaje"].Value.ToString();

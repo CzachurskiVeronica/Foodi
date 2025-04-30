@@ -20,6 +20,7 @@ namespace CapaPresentacion
         private static IconMenuItem MenuActivo = null;
         private static Form FormularioActivo = null;
 
+        // Toma los valores del usuario actual
         public Inicio(Usuario obj_user)
         {
             actualUser = obj_user;
@@ -27,12 +28,14 @@ namespace CapaPresentacion
             InitializeComponent();
         }
 
+        // Carga el formulario de inicio
         private void Inicio_Load(object sender, EventArgs e)
         {
             // Concatena los datos referentes al usuario
             labelUsuario.Text = actualUser.Nombre + " " + actualUser.Apellido;
         }
 
+        // Abre el formulario
         private void AbrirForm(IconMenuItem menu, Form formulario)
         {
             // Cuando no se selecciona un menu no se modifica el BackColor

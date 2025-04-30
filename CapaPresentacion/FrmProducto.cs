@@ -22,6 +22,7 @@ namespace CapaPresentacion
             InitializeComponent();
         }
 
+        // Carga el formulario de productos
         private void FrmProducto_Load(object sender, EventArgs e)
         {
             // Cargar estado en ComboBox
@@ -74,6 +75,7 @@ namespace CapaPresentacion
             }
         }
 
+        // Botón para guardar los datos del producto
         private void btnguardar_Click(object sender, EventArgs e)
         {
             if (!ValidarCampos())
@@ -83,6 +85,7 @@ namespace CapaPresentacion
 
             string mensaje = string.Empty;
 
+            // Crea un objeto de tipo Producto para almacenar los datos
             Producto producto = new Producto()
             {
                 Id_producto = Convert.ToInt32(textId.Text),
@@ -105,6 +108,7 @@ namespace CapaPresentacion
 
                 if (registroProducto != 0)
                 {
+                    // Agrega el nuevo producto a la grilla
                     gridProductos.Rows.Add(new object[]
                     {"", registroProducto, producto.Nombre, producto.Descripcion, producto.Precio.ToString("N2"),
                                                     producto.Stock,
@@ -114,11 +118,12 @@ namespace CapaPresentacion
                                                    ((OpcionesComboButton)cboestado.SelectedItem).Valor.ToString(),
                                                    ((OpcionesComboButton)cboestado.SelectedItem).Texto.ToString(),
                     });
-
+                    // Muestra el mensaje de éxito
                     MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
+                    // Muestra el mensaje de error
                     MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
@@ -145,11 +150,12 @@ namespace CapaPresentacion
                         row.Cells["EstadoValor"].Value = ((OpcionesComboButton)cboestado.SelectedItem).Valor.ToString();
                         row.Cells["Estado"].Value = ((OpcionesComboButton)cboestado.SelectedItem).Texto.ToString();
                     }
-
+                    // Muestra el mensaje de éxito
                     MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
+                    // Muestra el mensaje de error
                     MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
@@ -157,6 +163,7 @@ namespace CapaPresentacion
             }
         }
 
+        // Botón para limpiar los campos
         private void BorrarDatos()
         {
             txtIndice.Text = "-1";
@@ -173,6 +180,7 @@ namespace CapaPresentacion
             txtnombre.Select();
         }
 
+        // Botón para validar los campos
         private bool ValidarCampos()
         {
             if (string.IsNullOrWhiteSpace(txtIndice.Text))
@@ -234,6 +242,7 @@ namespace CapaPresentacion
             return true;
         }
 
+        // Botón para buscar productos
         private void iconBusqueda_Click(object sender, EventArgs e)
         {
             // Verifica si se ha seleccionado una columna para buscar
@@ -259,6 +268,7 @@ namespace CapaPresentacion
             }
         }
 
+        // Botón para limpiar el campo de búsqueda
         private void iconBorrar_Click(object sender, EventArgs e)
         {
             // Limpia el texto de busqueda ingresado
@@ -282,6 +292,7 @@ namespace CapaPresentacion
 
         }
 
+        // Botón para seleccionar un producto
         private void gridProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (gridProductos.Columns[e.ColumnIndex].Name == "btnseleccionar")
@@ -325,6 +336,7 @@ namespace CapaPresentacion
             }
         }
 
+        // Botón para eliminar un producto
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (Convert.ToInt32(textId.Text) != 0)
@@ -363,6 +375,7 @@ namespace CapaPresentacion
             }
         }
 
+        // Validación de campos para que solo se ingresen números
         private void txtstock_TextChanged(object sender, EventArgs e)
         {
             // Permite solo números
@@ -372,6 +385,7 @@ namespace CapaPresentacion
             txtstock.Text = System.Text.RegularExpressions.Regex.Replace(txtstock.Text, pattern, "");
         }
 
+        // Validación de campos para que solo se ingresen números y una coma
         private void txtprecio_TextChanged(object sender, EventArgs e)
         {
 
@@ -382,6 +396,7 @@ namespace CapaPresentacion
             txtprecio.Text = System.Text.RegularExpressions.Regex.Replace(txtprecio.Text, pattern, "");
         }
 
+        // Validación de campos para que solo se ingresen números
         private void txtstockmin_TextChanged(object sender, EventArgs e)
         {
             // Permite solo números

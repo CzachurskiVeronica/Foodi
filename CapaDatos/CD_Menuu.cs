@@ -20,6 +20,7 @@ namespace CapaDatos
             {
                 try
                 {
+                    // Consulta SQL para obtener los menús
                     string query = @"SELECT id_menu, nombre, activo FROM Menu";
 
                     SqlCommand cmd = new SqlCommand(query, conexion);
@@ -31,6 +32,7 @@ namespace CapaDatos
                     {
                         while (reader.Read())
                         {
+                            // Se crea un nuevo objeto Menu y se asignan los valores leídos
                             listas.Add(new Menu()
                             {
                                 Id_Menu = Convert.ToInt32(reader["id_menu"]),
@@ -49,6 +51,7 @@ namespace CapaDatos
             return listas;
         }
 
+        // Función que permite registrar un nuevo menú
         public int RegistrarMenu(Menu menu, out string Mensaje)
         {
             int idMenu = 0;
@@ -56,8 +59,10 @@ namespace CapaDatos
 
             try
             {
+                // Se establece la conexión a la base de datos
                 using (SqlConnection conexion = new SqlConnection(Conexion.CadenaConexion))
                 {
+                    // Se define el comando SQL para registrar el menú
                     SqlCommand cmd = new SqlCommand("SP_REGISTROMENU", conexion);
                     cmd.Parameters.AddWithValue("id_menu", menu.Id_Menu);
                     cmd.Parameters.AddWithValue("nombre", menu.Nombre);
@@ -83,6 +88,7 @@ namespace CapaDatos
             return idMenu;
         }
 
+        // Función que permite editar un menú existente
         public bool EditarMenu(Menu menu, out string Mensaje)
         {
             bool respuesta = false;
@@ -90,8 +96,10 @@ namespace CapaDatos
 
             try
             {
+                // Se establece la conexión a la base de datos
                 using (SqlConnection conexion = new SqlConnection(Conexion.CadenaConexion))
                 {
+                    // Se define el comando SQL para editar el menú
                     SqlCommand cmd = new SqlCommand("SP_EDITARMENU", conexion);
                     cmd.Parameters.AddWithValue("id_menu", menu.Id_Menu);
                     cmd.Parameters.AddWithValue("nombre", menu.Nombre);
@@ -117,6 +125,7 @@ namespace CapaDatos
             return respuesta;
         }
 
+        // Función que permite eliminar un menú
         public bool EliminarMenu(Menu menu, out string Mensaje)
         {
             bool respuesta = false;
@@ -124,8 +133,10 @@ namespace CapaDatos
 
             try
             {
+                // Se establece la conexión a la base de datos
                 using (SqlConnection conexion = new SqlConnection(Conexion.CadenaConexion))
                 {
+                    // Se define el comando SQL para eliminar el menú
                     SqlCommand cmd = new SqlCommand("SP_ELIMINARMENU", conexion);
                     cmd.Parameters.AddWithValue("id_menu", menu.Id_Menu);
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
+    // Esta clase representa la entidad PedidoDetalle
     public class PedidoDetalle
     {
         public int Id_Pedido_Detalle { get; set; }

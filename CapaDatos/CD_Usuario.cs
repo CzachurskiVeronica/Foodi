@@ -39,6 +39,7 @@ namespace CapaDatos
                     {
                         while (reader.Read())
                         {
+                            // Se crea un nuevo objeto Usuario y se asignan los valores leídos
                             listas.Add(new Usuario()
                             {
                                 Id_Usuario = Convert.ToInt32(reader["id_usuario"]),
@@ -98,6 +99,7 @@ namespace CapaDatos
 
                     conexion.Open();
                     cmd.ExecuteNonQuery();
+
                     // Salida desde el procedimiento almacenado para id usuario y mensaje correspondiente predefinido
                     idUser = Convert.ToInt32(cmd.Parameters["Usuario_creado"].Value);
                     Mensaje = cmd.Parameters["Respuesta"].Value.ToString();
@@ -126,6 +128,7 @@ namespace CapaDatos
             }
         }
 
+        // Metodo para editar un usuario
         public bool EditarUsuario(Usuario usuario, out string Mensaje)
         {
             // Inicializa las variables recibidas por parametro
@@ -159,6 +162,7 @@ namespace CapaDatos
 
                     conexion.Open();
                     cmd.ExecuteNonQuery();
+
                     // Salida desde el procedimiento almacenado para id usuario y mensaje correspondiente predefinido
                     respuesta = Convert.ToBoolean(cmd.Parameters["Respuesta"].Value);
                     Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
@@ -172,6 +176,7 @@ namespace CapaDatos
             return respuesta;
         }
 
+        // Metodo para eliminar un usuario
         public bool EliminarUsuario(Usuario usuario, out string Mensaje)
         {
             // Inicializa las variables recibidas por parametro

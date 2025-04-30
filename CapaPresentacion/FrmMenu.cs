@@ -21,6 +21,7 @@ namespace CapaPresentacion
             InitializeComponent();
         }
 
+        // Carga el formulario
         private void FrmMenu_Load(object sender, EventArgs e)
         {
             // Cargar estado en ComboBox
@@ -54,6 +55,7 @@ namespace CapaPresentacion
             }
         }
 
+        // Boton para guardar los datos ingresados
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (!ValidarCampos())
@@ -114,6 +116,7 @@ namespace CapaPresentacion
             }
         }
 
+        // Boton para eliminar los datos ingresados
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (Convert.ToInt32(textId.Text) != 0)
@@ -141,11 +144,13 @@ namespace CapaPresentacion
                                 break;
                             }
                         }
+                        // Mensaje de confirmación
                         MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         BorrarDatos();
                     }
                     else
                     {
+                        // Mensaje de error
                         MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
@@ -179,6 +184,7 @@ namespace CapaPresentacion
             BorrarDatos();
         }
 
+        // Evento para seleccionar una fila del DataGridView
         private void gridCategorias_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (gridCategorias.Columns[e.ColumnIndex].Name == "BtnSeleccionar")
@@ -207,6 +213,7 @@ namespace CapaPresentacion
             }
         }
 
+        // Evento para buscar en el DataGridView
         private void iconBusqueda_Click(object sender, EventArgs e)
         {
             // Verifica si se ha seleccionado una columna para buscar
@@ -232,6 +239,7 @@ namespace CapaPresentacion
             }
         }
 
+        // Evento para limpiar el campo de busqueda
         private void iconBorrar_Click(object sender, EventArgs e)
         {
             // Limpia el texto de busqueda ingresado

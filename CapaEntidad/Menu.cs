@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
+    // Esta clase representa la entidad Menu
     public class Menu
     {
         public int Id_Menu { get; set; }
