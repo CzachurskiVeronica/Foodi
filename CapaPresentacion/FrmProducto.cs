@@ -71,7 +71,8 @@ namespace CapaPresentacion
                                        productos.Stock, productos.Stock_min, 
                                        productos.Menu.Id_Menu, productos.Menu.Nombre,
                                        productos.Activo == 1 ? "Activo" : "No Activo",
-                                       productos.Activo == 1 ? 1 : 0,});
+                                       productos.Activo == 1 ? 1 : 0,
+                                       });
             }
         }
 
@@ -115,8 +116,8 @@ namespace CapaPresentacion
                                                     producto.Stock_min,
                                                    ((OpcionesComboButton)cbomenu.SelectedItem).Valor.ToString(),
                                                    ((OpcionesComboButton)cbomenu.SelectedItem).Texto.ToString(),
+                                                                                                      ((OpcionesComboButton)cboestado.SelectedItem).Texto.ToString(),
                                                    ((OpcionesComboButton)cboestado.SelectedItem).Valor.ToString(),
-                                                   ((OpcionesComboButton)cboestado.SelectedItem).Texto.ToString(),
                     });
                     // Muestra el mensaje de éxito
                     MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
