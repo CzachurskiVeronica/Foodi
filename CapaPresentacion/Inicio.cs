@@ -121,5 +121,10 @@ namespace CapaPresentacion
         {
             AbrirForm((IconMenuItem)sender, new FrmMesas());
         }
+
+        private void iconPagos_Click(object sender, EventArgs e)
+        {
+            AbrirForm((IconMenuItem)sender, new FrmPago());
+        }
     }
 }

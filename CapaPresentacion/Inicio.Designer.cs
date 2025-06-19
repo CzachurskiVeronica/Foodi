@@ -39,6 +39,7 @@
             this.labelUsuario = new System.Windows.Forms.Label();
             this.contenedor = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.iconPagos = new FontAwesome.Sharp.IconMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +52,7 @@
             this.menuusuario,
             this.menumenu,
             this.menuproductos,
+            this.iconPagos,
             this.iconMesas,
             this.menuacerca});
             this.menu.Location = new System.Drawing.Point(0, 103);
@@ -203,6 +205,22 @@
             this.label2.Text = "CERRAR SESION";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // iconPagos
+            // 
+            this.iconPagos.AutoSize = false;
+            this.iconPagos.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.iconPagos.ForeColor = System.Drawing.Color.Black;
+            this.iconPagos.IconChar = FontAwesome.Sharp.IconChar.Safari;
+            this.iconPagos.IconColor = System.Drawing.Color.Black;
+            this.iconPagos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPagos.IconSize = 60;
+            this.iconPagos.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.iconPagos.Name = "iconPagos";
+            this.iconPagos.Size = new System.Drawing.Size(150, 100);
+            this.iconPagos.Text = "Pagos";
+            this.iconPagos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.iconPagos.Click += new System.EventHandler(this.iconPagos_Click);
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -242,6 +260,7 @@
         private System.Windows.Forms.Panel contenedor;
         private FontAwesome.Sharp.IconMenuItem iconMesas;
         private System.Windows.Forms.Label label2;
+        private FontAwesome.Sharp.IconMenuItem iconPagos;
     }
 }
 
