@@ -12,5 +12,6 @@ namespace CapaEntidad
         public int Id_Mesa { get; set; }
         public int Cap_Personas_Max { get; set; }
         public int Ocupado { get; set; }
+        public int Activo { get; set; }
     }
 }
