@@ -45,6 +45,7 @@
     <Compile Include="CD_Mesa.cs" />
     <Compile Include="CD_Pago.cs" />
     <Compile Include="CD_Producto.cs" />
+    <Compile Include="CD_Rol.cs" />
     <Compile Include="CD_Usuario.cs" />
     <Compile Include="CD_Menu.cs" />
     <Compile Include="Conexion.cs" />

@@ -47,12 +47,12 @@ namespace CapaDatos
                                 Nombre = reader["nombre"].ToString(),
                                 Apellido = reader["apellido"].ToString(),
                                 Contraseña = reader["contraseña"].ToString(),
-                                Fecha_Incorporación = reader["fecha_incorporación"].ToString(),
+                                Fecha_Incorporación = Convert.ToDateTime(reader["fecha_incorporación"]),
                                 Activo = Convert.ToInt32(reader["activo"]),
-                                Id_rol = new Rol()
+                                rol = new Rol()
                                 {
                                     Id_Rol = Convert.ToInt32(reader["Id_Rol"]),
-                                    Nombre = reader["Nombre"].ToString()
+                                    Nombre = reader["RolName"].ToString()
                                 }
                             });
                         }
@@ -82,11 +82,10 @@ namespace CapaDatos
                 {
                     // Parametros de entrada de procedimiento almacenado creado en la base de datos
                     SqlCommand cmd = new SqlCommand("SP_REGISTROUSUARIO", conexion);
-                    cmd.Parameters.AddWithValue("id_rol", usuario.Id_rol);
+                    cmd.Parameters.AddWithValue("id_rol", usuario.rol.Id_Rol);
                     cmd.Parameters.AddWithValue("dni", usuario.DNI);
                     cmd.Parameters.AddWithValue("nombre", usuario.Nombre);
                     cmd.Parameters.AddWithValue("apellido", usuario.Apellido);
-                    cmd.Parameters.AddWithValue("fecha_incorporacion", usuario.Fecha_Incorporación);
                     cmd.Parameters.AddWithValue("contraseña", usuario.Contraseña);
                     cmd.Parameters.AddWithValue("activo", usuario.Activo);
 
@@ -148,10 +147,9 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("dni", usuario.DNI);
                     cmd.Parameters.AddWithValue("nombre", usuario.Nombre);
                     cmd.Parameters.AddWithValue("apellido", usuario.Apellido);
-                    cmd.Parameters.AddWithValue("fecha_incorporacion", usuario.Fecha_Incorporación);
                     cmd.Parameters.AddWithValue("contraseña", usuario.Contraseña);
                     cmd.Parameters.AddWithValue("activo", usuario.Activo);
-                    cmd.Parameters.AddWithValue("id_rol", usuario.Id_rol);
+                    cmd.Parameters.AddWithValue("id_rol", usuario.rol.Id_Rol);
 
                     // Parametros de salida declarados en los procedimientos
                     cmd.Parameters.Add("Respuesta", SqlDbType.Int).Direction = ParameterDirection.Output;
