@@ -6,31 +6,39 @@ namespace CapaDatos
 {
     public class InicializadorBD
     {
+        /// <summary>
+        /// Verifica si la base de datos existe. Si no, la crea y ejecuta un script SQL para inicializarla.
+        /// </summary>
         public static void VerificarOCrearBase()
         {
-            string nombreBD = "Foodi";
+            // Nombre de la base de datos a crear
+            string nombreBD = "NombreDeLaBase";
+
+            // Ruta del archivo de script SQL que contiene las tablas y datos iniciales
             string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ScriptBD", "Foodie.sql");
 
-            bool baseCreadaAhora = false; // Para saber si acaba de crearse la BD
+            // Bandera para saber si la base fue creada durante esta ejecución
+            bool baseCreadaAhora = false;
 
-            // 1. Conectar a master para verificar si existe la base y crearla si no
-            string connMaster = "Data Source=EV-NT-ZNORTE-1\\BD_CZACHURSKI;Initial Catalog=master;Integrated Security=True";
+            // Cadena de conexión a la base "master", necesaria para crear una nueva base
+            string cadenaConexionMaster = "Data Source=SERVIDOR\\INSTANCIA;Initial Catalog=master;Integrated Security=True";
 
-            using (SqlConnection connMasterConn = new SqlConnection(connMaster))
+            // Conectar a 'master' para verificar si existe la base
+            using (SqlConnection conexion = new SqlConnection(cadenaConexionMaster))
             {
-                connMasterConn.Open();
+                conexion.Open();
 
-                SqlCommand cmdCheck = new SqlCommand($"SELECT db_id('{nombreBD}')", connMasterConn);
+                SqlCommand cmdCheck = new SqlCommand($"SELECT db_id('{nombreBD}')", conexion);
                 object result = cmdCheck.ExecuteScalar();
 
                 if (result == DBNull.Value || result == null)
                 {
-                    Console.WriteLine("Base de datos no existe. Creando...");
+                    Console.WriteLine("La base de datos no existe. Creando...");
 
-                    SqlCommand cmdCreate = new SqlCommand($"CREATE DATABASE {nombreBD}", connMasterConn);
-                    cmdCreate.ExecuteNonQuery();
+                    SqlCommand cmdCrear = new SqlCommand($"CREATE DATABASE {nombreBD}", conexion);
+                    cmdCrear.ExecuteNonQuery();
 
-                    Console.WriteLine("Base creada correctamente.");
+                    Console.WriteLine("Base de datos creada correctamente.");
                     baseCreadaAhora = true;
                 }
                 else
@@ -39,33 +47,29 @@ namespace CapaDatos
                 }
             }
 
+            // Si la base fue recién creada, ejecutar el script de creación de tablas, procedimientos, etc.
             if (baseCreadaAhora)
             {
-                string connFoodi = $"Data Source=EV-NT-ZNORTE-1\\BD_CZACHURSKI;Initial Catalog={nombreBD};Integrated Security=True";
-                string script = File.ReadAllText(scriptPath);
+                string cadenaConexionBase = $"Data Source=SERVIDOR\\INSTANCIA;Initial Catalog={nombreBD};Integrated Security=True";
 
-                // Separar el script por líneas con solo "GO" (SQL Server batch separator)
-                string[] comandos = script.Split(new[] { "\r\nGO\r\n", "\nGO\n", "\rGO\r" }, StringSplitOptions.RemoveEmptyEntries);
+                // Leer contenido del archivo .sql
+                string scriptCompleto = File.ReadAllText(scriptPath);
 
-                using (SqlConnection connFoodiConn = new SqlConnection(connFoodi))
+                // Separar por lotes usando "GO" como delimitador
+                string[] comandos = scriptCompleto.Split(new[] { "\r\nGO\r\n", "\nGO\n", "\rGO\r" }, StringSplitOptions.RemoveEmptyEntries);
+
+                using (SqlConnection conexionBase = new SqlConnection(cadenaConexionBase))
                 {
-                    connFoodiConn.Open();
+                    conexionBase.Open();
 
-                    for (int i = 0; i < comandos.Length; i++)
+                    foreach (string comando in comandos)
                     {
-                        string comando = comandos[i];
-                        if (string.IsNullOrWhiteSpace(comando))
-                            continue;
+                        if (string.IsNullOrWhiteSpace(comando)) continue;
 
-                        using (SqlCommand cmd = new SqlCommand(comando, connFoodiConn))
+                        using (SqlCommand cmd = new SqlCommand(comando, conexionBase))
                         {
-                            cmd.CommandTimeout = 600; // Opcional: para scripts largos, aumenta el timeout
+                            cmd.CommandTimeout = 600; // Aumentar el tiempo límite si el script es largo
                             cmd.ExecuteNonQuery();
-                        }
-
-                        if (i == comandos.Length - 1)
-                        {
-                            Console.WriteLine("Llegamos al último batch del script.");
                         }
                     }
                 }
