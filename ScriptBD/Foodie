@@ -14,6 +14,7 @@ CREATE TABLE Mesa
   Id_Mesa INT IDENTITY(1,1),
   Cap_Personas_Max INT NOT NULL,
   Ocupado INT NULL,
+  Activo INT NULL DEFAULT 1,
   CONSTRAINT PK_id_mesa PRIMARY KEY (Id_Mesa)
 );
 
@@ -68,7 +69,6 @@ CREATE TABLE Pedido
   Fecha DATE NOT NULL,
   Id_Pago INT NOT NULL,
   Id_Usuario INT NOT NULL,
-  Nro_factura VARCHAR(200) NOT NULL,
   Id_Mesa INT NOT NULL,
   CONSTRAINT PK_id_pedido PRIMARY KEY (Id_Pedido),
   CONSTRAINT FK_id_pago FOREIGN KEY (Id_Pago) REFERENCES Pago(Id_Pago),
@@ -88,7 +88,6 @@ CREATE TABLE Pedido_Detalle
   CONSTRAINT FK_id_pedido FOREIGN KEY (Id_Pedido) REFERENCES Pedido(Id_Pedido),
   CONSTRAINT FK_id_producto FOREIGN KEY (Id_Producto) REFERENCES Producto(Id_Producto),
 );
-
 
 ------------------------------------------------------------------------------------------------
 ----------------------------------------PROCEDIMIENTOS------------------------------------------
