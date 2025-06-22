@@ -98,10 +98,9 @@
             // 
             this.textPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textPassword.Location = new System.Drawing.Point(299, 214);
-            this.textPassword.Multiline = true;
             this.textPassword.Name = "textPassword";
             this.textPassword.PasswordChar = '*';
-            this.textPassword.Size = new System.Drawing.Size(189, 31);
+            this.textPassword.Size = new System.Drawing.Size(189, 30);
             this.textPassword.TabIndex = 5;
             this.textPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textPassword_KeyDown);
             // 
@@ -116,6 +115,7 @@
             this.BtnIngresar.Text = "INGRESAR";
             this.BtnIngresar.UseVisualStyleBackColor = true;
             this.BtnIngresar.Click += new System.EventHandler(this.BtnIngresar_Click);
+            this.BtnIngresar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.BtnIngresar_KeyPress);
             // 
             // BtnCancelar
             // 

@@ -108,16 +108,33 @@ namespace CapaPresentacion
 
         private void textPassword_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Enter)
+            {
+                BtnIngresar.PerformClick(); // Simula el clic del botón
+                e.Handled = true;
+            }
         }
 
         private void textUsuario_TextChanged(object sender, EventArgs e)
         {
-            // Permite solo números
-            string pattern = @"[^\d]";
+            string original = textUsuario.Text;
+            string soloNumeros = System.Text.RegularExpressions.Regex.Replace(original, @"[^\d]", "");
 
-            // Remover caracteres que no coincidan solo números
-            textUsuario.Text = System.Text.RegularExpressions.Regex.Replace(textUsuario.Text, pattern, "");
+            if (original != soloNumeros)
+            {
+                int cursorPos = textUsuario.SelectionStart - 1;
+                textUsuario.Text = soloNumeros;
+                textUsuario.SelectionStart = Math.Max(cursorPos, 0);
+            }
+        }
+
+        private void BtnIngresar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                BtnIngresar.PerformClick();  // Simula el clic del botón
+                e.Handled = true;
+            }
         }
     }
 }
