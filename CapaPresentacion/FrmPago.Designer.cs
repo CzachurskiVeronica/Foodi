@@ -46,12 +46,12 @@
             this.textBusqueda = new System.Windows.Forms.TextBox();
             this.cboBusqueda = new System.Windows.Forms.ComboBox();
             this.gridCategorias = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.BtnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCategorias)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -87,10 +87,10 @@
             this.btnEliminar.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnEliminar.IconColor = System.Drawing.Color.Black;
             this.btnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEliminar.Location = new System.Drawing.Point(14, 733);
+            this.btnEliminar.Location = new System.Drawing.Point(44, 774);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(451, 53);
+            this.btnEliminar.Size = new System.Drawing.Size(430, 55);
             this.btnEliminar.TabIndex = 76;
             this.btnEliminar.Text = "ELIMINAR";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -116,10 +116,10 @@
             this.limpiarCampos.IconChar = FontAwesome.Sharp.IconChar.None;
             this.limpiarCampos.IconColor = System.Drawing.Color.Black;
             this.limpiarCampos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.limpiarCampos.Location = new System.Drawing.Point(14, 831);
+            this.limpiarCampos.Location = new System.Drawing.Point(44, 906);
             this.limpiarCampos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.limpiarCampos.Name = "limpiarCampos";
-            this.limpiarCampos.Size = new System.Drawing.Size(451, 54);
+            this.limpiarCampos.Size = new System.Drawing.Size(430, 54);
             this.limpiarCampos.TabIndex = 74;
             this.limpiarCampos.Text = "LIMPIAR CAMPOS";
             this.limpiarCampos.UseVisualStyleBackColor = false;
@@ -134,10 +134,10 @@
             this.btnguardar.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnguardar.IconColor = System.Drawing.Color.Transparent;
             this.btnguardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnguardar.Location = new System.Drawing.Point(14, 676);
+            this.btnguardar.Location = new System.Drawing.Point(44, 708);
             this.btnguardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnguardar.Name = "btnguardar";
-            this.btnguardar.Size = new System.Drawing.Size(451, 53);
+            this.btnguardar.Size = new System.Drawing.Size(430, 55);
             this.btnguardar.TabIndex = 73;
             this.btnguardar.Text = "GUARDAR";
             this.btnguardar.UseVisualStyleBackColor = false;
@@ -148,10 +148,10 @@
             this.cboestado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboestado.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboestado.FormattingEnabled = true;
-            this.cboestado.Location = new System.Drawing.Point(24, 209);
+            this.cboestado.Location = new System.Drawing.Point(35, 209);
             this.cboestado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboestado.Name = "cboestado";
-            this.cboestado.Size = new System.Drawing.Size(451, 37);
+            this.cboestado.Size = new System.Drawing.Size(430, 37);
             this.cboestado.TabIndex = 72;
             // 
             // label7
@@ -159,7 +159,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.White;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(20, 168);
+            this.label7.Location = new System.Drawing.Point(39, 168);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(94, 29);
             this.label7.TabIndex = 71;
@@ -168,11 +168,11 @@
             // txtnombre
             // 
             this.txtnombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtnombre.Location = new System.Drawing.Point(24, 115);
+            this.txtnombre.Location = new System.Drawing.Point(35, 115);
             this.txtnombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtnombre.Multiline = true;
             this.txtnombre.Name = "txtnombre";
-            this.txtnombre.Size = new System.Drawing.Size(449, 32);
+            this.txtnombre.Size = new System.Drawing.Size(428, 32);
             this.txtnombre.TabIndex = 70;
             // 
             // label3
@@ -180,7 +180,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.White;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(20, 74);
+            this.label3.Location = new System.Drawing.Point(39, 74);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 29);
             this.label3.TabIndex = 69;
@@ -192,7 +192,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(500, 959);
+            this.label1.Size = new System.Drawing.Size(500, 1254);
             this.label1.TabIndex = 68;
             // 
             // groupBox1
@@ -304,19 +304,7 @@
             this.gridCategorias.Size = new System.Drawing.Size(1377, 629);
             this.gridCategorias.TabIndex = 0;
             this.gridCategorias.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCategorias_CellContentClick);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.gridCategorias);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(584, 179);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(1389, 674);
-            this.groupBox2.TabIndex = 80;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Listado";
+            this.gridCategorias.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.gridCategorias_CellPainting);
             // 
             // BtnSeleccionar
             // 
@@ -362,20 +350,33 @@
             this.Estado.ReadOnly = true;
             this.Estado.Width = 125;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.gridCategorias);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(584, 179);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox2.Size = new System.Drawing.Size(1389, 674);
+            this.groupBox2.TabIndex = 80;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Listado";
+            // 
             // FrmPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
-            this.ClientSize = new System.Drawing.Size(2556, 959);
+            this.ClientSize = new System.Drawing.Size(2424, 1254);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.limpiarCampos);
+            this.Controls.Add(this.btnguardar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textId);
             this.Controls.Add(this.txtIndice);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.limpiarCampos);
-            this.Controls.Add(this.btnguardar);
             this.Controls.Add(this.cboestado);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtnombre);

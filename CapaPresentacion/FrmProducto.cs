@@ -288,11 +288,6 @@ namespace CapaPresentacion
             BorrarDatos();
         }
 
-        private void gridProductos_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
-        {
-
-        }
-
         // Botón para seleccionar un producto
         private void gridProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -405,6 +400,27 @@ namespace CapaPresentacion
 
             // Remover caracteres que no coincidan solo números
             txtstockmin.Text = System.Text.RegularExpressions.Regex.Replace(txtstockmin.Text, pattern, "");
+        }
+
+        private void gridProductos_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            // Manejo para icono en cada una de las filas de las categorias
+            // Tamaño para adaptar a la fila
+            if (e.RowIndex < 0)
+                return;
+
+            if (e.ColumnIndex == 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                var w = Properties.Resources.comprobado.Width;
+                var h = Properties.Resources.comprobado.Height;
+                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
+                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
+
+                e.Graphics.DrawImage(Properties.Resources.comprobado, new Rectangle(x, y, w, h));
+                e.Handled = true;
+            };
         }
     }
 }

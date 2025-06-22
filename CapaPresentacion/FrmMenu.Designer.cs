@@ -44,15 +44,15 @@
             this.cboBusqueda = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.gridCategorias = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtIndice = new System.Windows.Forms.TextBox();
-            this.textId = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.BtnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtIndice = new System.Windows.Forms.TextBox();
+            this.textId = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCategorias)).BeginInit();
@@ -78,7 +78,7 @@
             this.limpiarCampos.IconChar = FontAwesome.Sharp.IconChar.None;
             this.limpiarCampos.IconColor = System.Drawing.Color.Black;
             this.limpiarCampos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.limpiarCampos.Location = new System.Drawing.Point(21, 839);
+            this.limpiarCampos.Location = new System.Drawing.Point(21, 872);
             this.limpiarCampos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.limpiarCampos.Name = "limpiarCampos";
             this.limpiarCampos.Size = new System.Drawing.Size(451, 54);
@@ -96,7 +96,7 @@
             this.btnguardar.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnguardar.IconColor = System.Drawing.Color.Transparent;
             this.btnguardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnguardar.Location = new System.Drawing.Point(21, 684);
+            this.btnguardar.Location = new System.Drawing.Point(21, 677);
             this.btnguardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnguardar.Name = "btnguardar";
             this.btnguardar.Size = new System.Drawing.Size(451, 53);
@@ -110,10 +110,10 @@
             this.cboestado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboestado.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboestado.FormattingEnabled = true;
-            this.cboestado.Location = new System.Drawing.Point(31, 217);
+            this.cboestado.Location = new System.Drawing.Point(32, 228);
             this.cboestado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboestado.Name = "cboestado";
-            this.cboestado.Size = new System.Drawing.Size(451, 37);
+            this.cboestado.Size = new System.Drawing.Size(440, 37);
             this.cboestado.TabIndex = 29;
             // 
             // label7
@@ -130,11 +130,11 @@
             // txtnombre
             // 
             this.txtnombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtnombre.Location = new System.Drawing.Point(31, 123);
+            this.txtnombre.Location = new System.Drawing.Point(32, 123);
             this.txtnombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtnombre.Multiline = true;
             this.txtnombre.Name = "txtnombre";
-            this.txtnombre.Size = new System.Drawing.Size(449, 32);
+            this.txtnombre.Size = new System.Drawing.Size(440, 32);
             this.txtnombre.TabIndex = 23;
             this.txtnombre.TextChanged += new System.EventHandler(this.txtnombre_TextChanged);
             // 
@@ -288,48 +288,7 @@
             this.gridCategorias.Size = new System.Drawing.Size(1377, 629);
             this.gridCategorias.TabIndex = 0;
             this.gridCategorias.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCategorias_CellContentClick);
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(515, 950);
-            this.label1.TabIndex = 17;
-            // 
-            // txtIndice
-            // 
-            this.txtIndice.Location = new System.Drawing.Point(275, 50);
-            this.txtIndice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtIndice.Multiline = true;
-            this.txtIndice.Name = "txtIndice";
-            this.txtIndice.Size = new System.Drawing.Size(29, 32);
-            this.txtIndice.TabIndex = 40;
-            this.txtIndice.Text = "-1";
-            this.txtIndice.Visible = false;
-            // 
-            // textId
-            // 
-            this.textId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textId.Location = new System.Drawing.Point(315, 48);
-            this.textId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textId.Name = "textId";
-            this.textId.Size = new System.Drawing.Size(43, 27);
-            this.textId.TabIndex = 67;
-            this.textId.Text = "0";
-            this.textId.Visible = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Font = new System.Drawing.Font("Book Antiqua", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(-115, 304);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 28);
-            this.label4.TabIndex = 61;
-            this.label4.Text = "Estado:";
+            this.gridCategorias.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.gridCategorias_CellPainting);
             // 
             // BtnSeleccionar
             // 
@@ -374,6 +333,48 @@
             this.Estado.Name = "Estado";
             this.Estado.ReadOnly = true;
             this.Estado.Width = 125;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(515, 950);
+            this.label1.TabIndex = 17;
+            // 
+            // txtIndice
+            // 
+            this.txtIndice.Location = new System.Drawing.Point(275, 50);
+            this.txtIndice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtIndice.Multiline = true;
+            this.txtIndice.Name = "txtIndice";
+            this.txtIndice.Size = new System.Drawing.Size(29, 32);
+            this.txtIndice.TabIndex = 40;
+            this.txtIndice.Text = "-1";
+            this.txtIndice.Visible = false;
+            // 
+            // textId
+            // 
+            this.textId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textId.Location = new System.Drawing.Point(315, 48);
+            this.textId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textId.Name = "textId";
+            this.textId.Size = new System.Drawing.Size(43, 27);
+            this.textId.TabIndex = 67;
+            this.textId.Text = "0";
+            this.textId.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label4.Font = new System.Drawing.Font("Book Antiqua", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(-115, 304);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(89, 28);
+            this.label4.TabIndex = 61;
+            this.label4.Text = "Estado:";
             // 
             // FrmMenu
             // 

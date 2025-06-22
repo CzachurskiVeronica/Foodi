@@ -48,8 +48,6 @@
             this.cboBusqueda = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.gridCategorias = new System.Windows.Forms.DataGridView();
-            this.cboEstado2 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.BtnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +55,8 @@
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstadoValor2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cboEstado2 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCategorias)).BeginInit();
@@ -101,7 +101,7 @@
             this.btnEliminar.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnEliminar.IconColor = System.Drawing.Color.Black;
             this.btnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEliminar.Location = new System.Drawing.Point(17, 734);
+            this.btnEliminar.Location = new System.Drawing.Point(17, 775);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(451, 53);
@@ -130,7 +130,7 @@
             this.limpiarCampos.IconChar = FontAwesome.Sharp.IconChar.None;
             this.limpiarCampos.IconColor = System.Drawing.Color.Black;
             this.limpiarCampos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.limpiarCampos.Location = new System.Drawing.Point(17, 832);
+            this.limpiarCampos.Location = new System.Drawing.Point(17, 889);
             this.limpiarCampos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.limpiarCampos.Name = "limpiarCampos";
             this.limpiarCampos.Size = new System.Drawing.Size(451, 54);
@@ -148,7 +148,7 @@
             this.btnguardar.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnguardar.IconColor = System.Drawing.Color.Transparent;
             this.btnguardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnguardar.Location = new System.Drawing.Point(17, 677);
+            this.btnguardar.Location = new System.Drawing.Point(17, 712);
             this.btnguardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnguardar.Name = "btnguardar";
             this.btnguardar.Size = new System.Drawing.Size(451, 53);
@@ -162,7 +162,7 @@
             this.cboestado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboestado.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboestado.FormattingEnabled = true;
-            this.cboestado.Location = new System.Drawing.Point(27, 210);
+            this.cboestado.Location = new System.Drawing.Point(17, 210);
             this.cboestado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboestado.Name = "cboestado";
             this.cboestado.Size = new System.Drawing.Size(451, 37);
@@ -175,18 +175,18 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(23, 169);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(196, 36);
+            this.label7.Size = new System.Drawing.Size(157, 29);
             this.label7.TabIndex = 82;
             this.label7.Text = "Ocupado/No:";
             // 
             // txtnombre
             // 
             this.txtnombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtnombre.Location = new System.Drawing.Point(27, 116);
+            this.txtnombre.Location = new System.Drawing.Point(17, 116);
             this.txtnombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtnombre.Multiline = true;
             this.txtnombre.Name = "txtnombre";
-            this.txtnombre.Size = new System.Drawing.Size(449, 32);
+            this.txtnombre.Size = new System.Drawing.Size(451, 32);
             this.txtnombre.TabIndex = 81;
             this.txtnombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnombre_KeyPress);
             // 
@@ -334,28 +334,7 @@
             this.gridCategorias.Size = new System.Drawing.Size(1377, 629);
             this.gridCategorias.TabIndex = 0;
             this.gridCategorias.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCategorias_CellContentClick);
-            // 
-            // cboEstado2
-            // 
-            this.cboEstado2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboEstado2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboEstado2.FormattingEnabled = true;
-            this.cboEstado2.Location = new System.Drawing.Point(28, 315);
-            this.cboEstado2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cboEstado2.Name = "cboEstado2";
-            this.cboEstado2.Size = new System.Drawing.Size(451, 37);
-            this.cboEstado2.TabIndex = 93;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(24, 274);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 29);
-            this.label4.TabIndex = 92;
-            this.label4.Text = "Estado:";
+            this.gridCategorias.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.gridCategorias_CellPainting);
             // 
             // BtnSeleccionar
             // 
@@ -416,6 +395,28 @@
             this.Estado2.Name = "Estado2";
             this.Estado2.ReadOnly = true;
             this.Estado2.Width = 175;
+            // 
+            // cboEstado2
+            // 
+            this.cboEstado2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEstado2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboEstado2.FormattingEnabled = true;
+            this.cboEstado2.Location = new System.Drawing.Point(17, 315);
+            this.cboEstado2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboEstado2.Name = "cboEstado2";
+            this.cboEstado2.Size = new System.Drawing.Size(451, 37);
+            this.cboEstado2.TabIndex = 93;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.White;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(24, 274);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(94, 29);
+            this.label4.TabIndex = 92;
+            this.label4.Text = "Estado:";
             // 
             // FrmMesas
             // 

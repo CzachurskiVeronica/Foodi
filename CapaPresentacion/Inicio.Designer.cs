@@ -32,6 +32,7 @@
             this.menuusuario = new FontAwesome.Sharp.IconMenuItem();
             this.menumenu = new FontAwesome.Sharp.IconMenuItem();
             this.menuproductos = new FontAwesome.Sharp.IconMenuItem();
+            this.iconPagos = new FontAwesome.Sharp.IconMenuItem();
             this.iconMesas = new FontAwesome.Sharp.IconMenuItem();
             this.menuacerca = new FontAwesome.Sharp.IconMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -39,7 +40,7 @@
             this.labelUsuario = new System.Windows.Forms.Label();
             this.contenedor = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.iconPagos = new FontAwesome.Sharp.IconMenuItem();
+            this.iconVenta = new FontAwesome.Sharp.IconMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,11 +55,12 @@
             this.menuproductos,
             this.iconPagos,
             this.iconMesas,
+            this.iconVenta,
             this.menuacerca});
             this.menu.Location = new System.Drawing.Point(0, 103);
             this.menu.Name = "menu";
             this.menu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menu.Size = new System.Drawing.Size(2579, 108);
+            this.menu.Size = new System.Drawing.Size(1924, 108);
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip1";
             // 
@@ -113,6 +115,22 @@
             this.menuproductos.Click += new System.EventHandler(this.menuproductos_Click);
             this.menuproductos.MouseEnter += new System.EventHandler(this.menuproductos_MouseEnter);
             // 
+            // iconPagos
+            // 
+            this.iconPagos.AutoSize = false;
+            this.iconPagos.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.iconPagos.ForeColor = System.Drawing.Color.Black;
+            this.iconPagos.IconChar = FontAwesome.Sharp.IconChar.Safari;
+            this.iconPagos.IconColor = System.Drawing.Color.Black;
+            this.iconPagos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPagos.IconSize = 60;
+            this.iconPagos.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.iconPagos.Name = "iconPagos";
+            this.iconPagos.Size = new System.Drawing.Size(150, 100);
+            this.iconPagos.Text = "Pagos";
+            this.iconPagos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.iconPagos.Click += new System.EventHandler(this.iconPagos_Click);
+            // 
             // iconMesas
             // 
             this.iconMesas.AutoSize = false;
@@ -155,7 +173,7 @@
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menuStrip1.Size = new System.Drawing.Size(2579, 103);
+            this.menuStrip1.Size = new System.Drawing.Size(1924, 103);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip2";
             // 
@@ -205,28 +223,28 @@
             this.label2.Text = "CERRAR SESION";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // iconPagos
+            // iconVenta
             // 
-            this.iconPagos.AutoSize = false;
-            this.iconPagos.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.iconPagos.ForeColor = System.Drawing.Color.Black;
-            this.iconPagos.IconChar = FontAwesome.Sharp.IconChar.Safari;
-            this.iconPagos.IconColor = System.Drawing.Color.Black;
-            this.iconPagos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPagos.IconSize = 60;
-            this.iconPagos.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.iconPagos.Name = "iconPagos";
-            this.iconPagos.Size = new System.Drawing.Size(150, 100);
-            this.iconPagos.Text = "Pagos";
-            this.iconPagos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.iconPagos.Click += new System.EventHandler(this.iconPagos_Click);
+            this.iconVenta.AutoSize = false;
+            this.iconVenta.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.iconVenta.ForeColor = System.Drawing.Color.Black;
+            this.iconVenta.IconChar = FontAwesome.Sharp.IconChar.ShareFromSquare;
+            this.iconVenta.IconColor = System.Drawing.Color.Black;
+            this.iconVenta.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconVenta.IconSize = 60;
+            this.iconVenta.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.iconVenta.Name = "iconVenta";
+            this.iconVenta.Size = new System.Drawing.Size(150, 100);
+            this.iconVenta.Text = "Pedidos";
+            this.iconVenta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.iconVenta.Click += new System.EventHandler(this.iconVenta_Click);
             // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(2579, 1192);
+            this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.contenedor);
             this.Controls.Add(this.labelUsuario);
@@ -261,6 +279,7 @@
         private FontAwesome.Sharp.IconMenuItem iconMesas;
         private System.Windows.Forms.Label label2;
         private FontAwesome.Sharp.IconMenuItem iconPagos;
+        private FontAwesome.Sharp.IconMenuItem iconVenta;
     }
 }
 

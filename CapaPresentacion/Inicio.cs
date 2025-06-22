@@ -38,6 +38,21 @@ namespace CapaPresentacion
         // Abre el formulario
         private void AbrirForm(IconMenuItem menu, Form formulario)
         {
+            // Antes de cerrar el formulario activo, restauramos el stock
+            if (FormularioActivo is FrmVentas formVentas)
+            {
+                // gridVentas es accesible desde formVentas
+                for (int i = 0; i < formVentas.gridVentas.Rows.Count; i++)
+                {
+                    // Obtener el id y el stock del producto actual
+                    int idProducto = Convert.ToInt32(formVentas.gridVentas.Rows[i].Cells["idproducto"].Value);
+                    int stockActual = Convert.ToInt32(formVentas.gridVentas.Rows[i].Cells["Stock"].Value);
+
+                    // Restaurar el stock
+                    bool respuesta = new CN_Venta().SumarStock(idProducto, stockActual);
+                }
+            }
+
             // Cuando no se selecciona un menu no se modifica el BackColor
             if (MenuActivo != null)
             {
@@ -125,6 +140,11 @@ namespace CapaPresentacion
         private void iconPagos_Click(object sender, EventArgs e)
         {
             AbrirForm((IconMenuItem)sender, new FrmPago());
+        }
+
+        private void iconVenta_Click(object sender, EventArgs e)
+        {
+            AbrirForm((IconMenuItem)sender, new FrmVentas(actualUser));
         }
     }
 }
