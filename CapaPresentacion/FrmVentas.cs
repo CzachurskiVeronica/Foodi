@@ -73,6 +73,9 @@ namespace CapaPresentacion
             cantidad.Value = 1;
             textPrecio.Text = "";
             txtStockDisponible.Text = "";
+            idMesa2.Text = "";
+            idMesa.Text = "-1";
+            cant.Text = "";
         }
 
         // Para calcular el total existente

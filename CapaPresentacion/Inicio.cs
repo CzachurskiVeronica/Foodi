@@ -26,11 +26,71 @@ namespace CapaPresentacion
             actualUser = obj_user;
 
             InitializeComponent();
+            SetDoubleBuffered(contenedor);
+        }
+
+        // Método auxiliar para habilitar el doble buffer en cualquier control
+        public void SetDoubleBuffered(Control control)
+        {
+            System.Reflection.PropertyInfo doubleBufferPropertyInfo =
+                  control.GetType().GetProperty("DoubleBuffered",
+                  System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+
+            doubleBufferPropertyInfo.SetValue(control, true, null);
         }
 
         // Carga el formulario de inicio
         private void Inicio_Load(object sender, EventArgs e)
         {
+            // Asigna el cursor de mano a los íconos del menú
+            usuario.MouseEnter += Icon_MouseEnter;
+            //iconReportes.MouseEnter += Icon_MouseEnter;
+            productos.MouseEnter += Icon_MouseEnter;
+            carta.MouseEnter += Icon_MouseEnter;
+            pedidos.MouseEnter += Icon_MouseEnter;
+            mesas.MouseEnter += Icon_MouseEnter;
+            pagos.MouseEnter += Icon_MouseEnter;
+            menuacerca.MouseEnter += Icon_MouseEnter;
+
+            // Se obtiene la funcion de poder obtener los roles que el usuario actual posee
+            List<Rol> rolesUsuario = new CN_Rol().Permisos(actualUser.rol.Id_Rol);
+
+            usuario.Visible = false;
+            productos.Visible = false;
+            pedidos.Visible = false;
+            mesas.Visible = false;
+            pagos.Visible = false;
+            carta.Visible = false;
+            //iconReportes.Visible = false;
+
+            // Rutas que el usuario podra navegar si es Administrador
+            if (rolesUsuario.Any(rol => rol.Id_Rol == 1))
+            {
+                usuario.Visible = true;
+                carta.Visible = true;
+                mesas.Visible = true;
+                pagos.Visible = true;
+                pedidos.Visible = true;
+                //iconDashboard.Visible = true;
+            }
+
+            // Rutas que el usuario podra navegar si es Encargado
+            if (rolesUsuario.Any(rol => rol.Id_Rol == 2))
+            {
+                //iconReportes.Visible = true;
+                usuario.Visible = true;
+                carta.Visible = true;
+                mesas.Visible = true;
+                pagos.Visible = true;
+                pedidos.Visible = true;
+            }
+
+            // Rutas que el usuario podra navegar si es Mozo
+            if (rolesUsuario.Any(rol => rol.Id_Rol == 3))
+            {
+                pedidos.Visible = true;
+            }
+
             // Concatena los datos referentes al usuario
             labelUsuario.Text = actualUser.Nombre + " " + actualUser.Apellido;
         }

@@ -68,7 +68,7 @@ namespace CapaDatos
                         WHERE usuario.id_rol = @id_rol";
 
                     SqlCommand cmd = new SqlCommand(query, conexion);
-                    cmd.Parameters.AddWithValue("@id_users", id_users);
+                    cmd.Parameters.AddWithValue("@id_rol", id_users);
                     cmd.CommandType = CommandType.Text;
 
                     conexion.Open();
