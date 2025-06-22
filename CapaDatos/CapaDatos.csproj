@@ -56,6 +56,7 @@
     <Compile Include="CD_Menu.cs" />
     <Compile Include="CD_Venta.cs" />
     <Compile Include="Conexion.cs" />
+    <Compile Include="InicializadorBD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

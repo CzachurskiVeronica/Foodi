@@ -14,6 +14,7 @@ namespace CapaPresentacion
         [STAThread]
         static void Main()
         {
+            //CapaDatos.InicializadorBD.VerificarOCrearBase(); // Esto crea la BD si no existe
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Login());
