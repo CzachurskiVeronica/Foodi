@@ -90,8 +90,196 @@ CREATE TABLE Pedido_Detalle
 );
 
 ------------------------------------------------------------------------------------------------
+-------------------------------------------INSERTS----------------------------------------------
+------------------------------------------------------------------------------------------------
+INSERT INTO Menu (Nombre) VALUES 
+('Entradas'),
+('Principales'),
+('Acompañamientos'),
+('Kids'),
+('Postres'),
+('Brunch'),
+('Bebidas');
+
+INSERT INTO Producto (Nombre, Descripción, Precio, Activo, Stock, Stock_minimo, Id_Menu) VALUES
+-- Entradas
+('Rabas', 'Con limón y alioli de lima', 12500, 1, 50, 10, 5),
+('Tiradito de Surubí', 'Curado y ahumado. Con pan de campo', 10000, 1, 50, 10, 5),
+('Gyozas de Langostino', 'Empanaditas chinas al vapor, con salsa de soja', 11000, 1, 50, 10, 5),
+('Chorizo de Surubí de la casa', 'Con chucrut y puré de papas', 10000, 1, 50, 10, 5),
+('Croquetas de Jamón', 'x4 unidades, salsa bechamel y jamón crudo', 8000, 1, 50, 10, 5),
+('Provoleta Ahumada', 'Y dúo de pestos: genovés y tomates secos', 11000, 1, 50, 10, 5),
+('Empanada de Carne Braseada', 'x2 unidades, al horno', 7000, 1, 50, 10, 5),
+('Empanada de Surubí', 'x2 unidades, fritas con salsa llajwa', 7000, 1, 50, 10, 5),
+('Papas Bravas', '', 7000, 1, 50, 10, 5),
+
+-- Principales
+('Pulpo Español', 'Acompañado con papas', 36000, 1, 50, 10, 6),
+('Lomo de Surubí', '320g con salsa romesco', 20000, 1, 50, 10, 6),
+('Bife de Chorizo', '350g con punto a elección, sale mariposa', 20000, 1, 50, 10, 6),
+('Milanesa de Surubí', '', 18000, 1, 50, 10, 6),
+('Paella de Mariscos', 'Arroz de calasparra origen España', 24000, 1, 50, 10, 6),
+('Paella de Hongos', 'Champignon, shiitake y de pino. Arroz de calasparra origen España', 19000, 1, 50, 10, 6),
+('Lasagna', 'Blend de quesos y pesto genovés', 18000, 1, 50, 10, 6),
+('Tortellini de Trucha Ahumada', 'Con manteca de hierbas y eneldo', 18000, 1, 50, 10, 6),
+
+-- Kids
+('Mini Bife', 'Acompañado con papas fritas', 14000, 1, 50, 10, 8),
+('Milanesa de Pollo', 'Con papas fritas', 12500, 1, 50, 10, 8),
+('Ñoquis de Papa', 'Con salsa mixta', 11500, 1, 50, 10, 8),
+('Cheeseburger', 'Hamburguesa con cheddar y papas fritas', 12500, 1, 50, 10, 8),
+
+-- Postres
+('Pavlova', 'De frutas de estación, ddl y chantilly', 8000, 1, 50, 10, 9),
+('Cheesecake de Guayaba', 'Torta de queso con reducción de guayaba casera', 7000, 1, 50, 10, 9),
+('Cubanitos Rellenos x2', 'De dulce de leche', 5000, 1, 50, 10, 9),
+('Flan de dulce de leche', 'Y crema chantilly', 6000, 1, 50, 10, 9),
+('Trampantojo de Naranja', 'Reversión del cheesecake con forma de naranja', 9000, 1, 50, 10, 9),
+
+-- Brunch
+('Porción Chipas', 'De frutas de estación, ddl y chantilly', 8000, 1, 50, 10, 10),
+('Avocado Toast', 'Torta de queso con reducción de guayaba casera', 7000, 1, 50, 10, 10),
+('Tostado de Jamón y Queso', 'De dulce de leche', 5000, 1, 50, 10, 10),
+
+-- Bebidas
+('Agua 500 cc', 'Con o sin gas', 2500, 1, 50, 10, 11),
+('Agua Saborizada', 'Levite', 2500, 1, 50, 10, 11),
+('Gaseosas', 'Línea Coca 375cc. Consultar variedades', 3000, 1, 50, 10, 11),
+('Vaso Limonada', '', 4000, 1, 50, 10, 11),
+('Jarra de Limonada', '', 10000, 1, 50, 10, 11);
+
+-- Insertar tipo de pagos en la tabla pagos
+INSERT INTO dbo.pago (nombre, activo) VALUES 
+			('Efectivo', 1), 
+			('Mercado Pago',  1), 
+			('Tarjeta de Crédito', 1),
+			('Tarjeta de Débito', 1);
+
+------------------------------------------------------------------------------------------------
 ----------------------------------------PROCEDIMIENTOS------------------------------------------
 ------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------
+--------------------------------------TABLA USERS-----------------------------------------------
+------------------------------------------------------------------------------------------------
+--INSERT DE USUARIO
+GO
+CREATE OR ALTER PROC SP_REGISTROUSUARIO
+(
+    @id_rol INT,
+    @nombre VARCHAR(50),
+    @apellido VARCHAR(50),
+    @contraseña VARCHAR(100),
+    @dni VARCHAR(10),
+    @activo VARCHAR(1),
+    @Usuario_creado INT OUTPUT,
+    @Respuesta VARCHAR(200) OUTPUT
+)
+AS
+BEGIN
+    SET @Usuario_creado = 0
+    SET @Respuesta = ''
+
+    -- Validar que no exista otro usuario con el mismo DNI
+    IF EXISTS(SELECT 1 FROM dbo.Usuario WHERE dni = @dni)
+    BEGIN
+        SET @Respuesta = 'El DNI ya está registrado.'
+        RETURN
+    END
+
+    -- Insertar el nuevo usuario
+    INSERT INTO dbo.Usuario (id_rol, nombre, apellido, contraseña, dni, activo)
+    VALUES (@id_rol, @nombre, @apellido, @contraseña, @dni, @activo)
+
+    SET @Usuario_creado = SCOPE_IDENTITY()
+    SET @Respuesta = 'Usuario registrado exitosamente.'
+END
+
+--EDITAR USUARIO
+GO
+CREATE OR ALTER PROC SP_EDITARUSUARIO
+(
+    @id_usuario INT,
+    @id_rol INT,
+    @nombre VARCHAR(50),
+    @apellido VARCHAR(50),
+    @contraseña VARCHAR(100),
+    @dni VARCHAR(10),
+    @activo VARCHAR(1),
+    @Respuesta BIT OUTPUT,
+    @Mensaje VARCHAR(200) OUTPUT
+)
+AS
+BEGIN
+    SET @Respuesta = 0
+    SET @Mensaje = ''
+
+    -- Si está inactivo, permitir solo reactivación
+    IF EXISTS (SELECT 1 FROM dbo.Usuario WHERE Id_Usuario = @id_usuario AND Activo = 0)
+    BEGIN
+        IF @activo = '1'
+        BEGIN
+            UPDATE dbo.Usuario
+            SET Activo = @activo
+            WHERE Id_Usuario = @id_usuario
+
+            SET @Respuesta = 1
+            SET @Mensaje = 'Usuario reactivado exitosamente.'
+            RETURN
+        END
+        ELSE
+        BEGIN
+            SET @Mensaje = 'No se puede editar un usuario inactivo. Necesita ser reactivado.'
+            RETURN
+        END
+    END
+
+    -- Validación de DNI duplicado
+    IF EXISTS (SELECT 1 FROM dbo.Usuario WHERE DNI = @dni AND Id_Usuario != @id_usuario)
+    BEGIN
+        SET @Mensaje = 'El DNI ya está registrado por otro usuario.'
+        RETURN
+    END
+
+    UPDATE dbo.Usuario
+    SET Id_Rol = @id_rol,
+        Nombre = @nombre,
+        Apellido = @apellido,
+        Contraseña = @contraseña,
+        DNI = @dni,
+        Activo = @activo
+    WHERE Id_Usuario = @id_usuario
+
+    SET @Respuesta = 1
+    SET @Mensaje = 'Usuario modificado exitosamente.'
+END
+
+--ELIMINAR USUARIO
+GO
+CREATE OR ALTER PROC SP_ELIMINARUSUARIO
+(
+    @id_usuario INT,
+    @Respuesta BIT OUTPUT,
+    @Mensaje VARCHAR(200) OUTPUT
+)
+AS
+BEGIN
+    SET @Respuesta = 0
+    SET @Mensaje = ''
+
+    IF EXISTS (SELECT 1 FROM dbo.Usuario WHERE Id_Usuario = @id_usuario AND Activo = 0)
+    BEGIN
+        SET @Mensaje = 'El usuario ya se encuentra eliminado.'
+        RETURN
+    END
+
+    UPDATE dbo.Usuario
+    SET Activo = 0
+    WHERE Id_Usuario = @id_usuario
+
+    SET @Respuesta = 1
+    SET @Mensaje = 'Usuario eliminado exitosamente.'
+END
 
 ------------------------------------------------------------------------------------------------
 --------------------------------------TABLA MENU------------------------------------------------
@@ -346,4 +534,319 @@ BEGIN
 
     SET @Mensaje = 'Producto eliminado exitosamente.'
 	SET @Respuesta = 1;
+END
+
+------------------------------------------------------------------------------------------------
+--------------------------------------TABLA PAGO------------------------------------------------
+------------------------------------------------------------------------------------------------
+
+/* REGISTRO DE MENU */
+CREATE PROC SP_REGISTROPAGO
+(
+@id_pago int,
+@nombre varchar(50),
+@activo varchar(1),
+@Respuesta int output,
+@Mensaje varchar(200) output
+)
+AS
+BEGIN
+    SET @Respuesta = 0
+    SET @Mensaje = ''
+
+    -- Para validar que no exista otro menu con mismo nombre
+    IF EXISTS(SELECT * FROM dbo.Pago WHERE nombre = @nombre)
+    BEGIN
+        SET @Mensaje = 'Pago ya existente.'
+        RETURN
+    END
+
+    INSERT INTO dbo.Pago (nombre, activo) 
+    VALUES (@nombre, @activo)
+
+    SET @Respuesta = SCOPE_IDENTITY(); -- Para realizar la carga del id con el ultimo generado
+    SET @Mensaje = 'Pago creado exitosamente.'
+END
+
+/* EDITAR DE MENU */
+
+GO
+CREATE PROC SP_EDITARPAGO
+(
+@id_pago int,
+@nombre varchar(50),
+@activo varchar(1),
+@Respuesta int output,
+@Mensaje varchar(200) output
+)
+AS
+BEGIN
+    SET @Respuesta = 1
+    SET @Mensaje = ''
+
+    -- Para verificar si el menu está inactivo (activo = 0)
+    IF EXISTS (SELECT * FROM dbo.Pago WHERE id_pago = @id_pago AND activo = 0)
+    BEGIN
+        -- Si está inactivo, permitir solo la modificación del campo 'activo'
+        IF @activo = 1 -- Si se intenta reactivar
+        BEGIN
+            UPDATE dbo.Pago SET
+                activo = @activo
+            WHERE id_pago = @id_pago
+
+            SET @Respuesta = 1;
+            SET @Mensaje = 'Pago reactivado exitosamente.';
+            RETURN;
+        END
+        ELSE
+        BEGIN
+            -- No permitir cambiar otros campos si el menu está inactivo
+            SET @Respuesta = 0;
+            SET @Mensaje = 'No se pueden editar los campos de un Pago inactivo.' + CHAR(13) + CHAR(10) + 'Necesita ser reactivado.';
+            RETURN;
+        END
+    END
+
+    -- Para validar que no exista otro pago con mismo nombre, distinto del menu que se quiere editar
+    IF EXISTS(SELECT * FROM dbo.Pago WHERE nombre = @nombre AND id_pago != @id_pago)
+    BEGIN
+        SET @Respuesta = 0
+        SET @Mensaje = 'No se pueden duplicar los pagos.'
+        RETURN
+    END
+
+    UPDATE dbo.Pago SET
+        nombre = @nombre,
+        activo = @activo
+    WHERE id_pago = @id_pago
+
+    SET @Respuesta = 1; -- Para realizar la carga del id con el ultimo generado
+    SET @Mensaje = 'Pago editado exitosamente.'
+END
+GO
+
+/* ELIMINAR DE PAGO*/
+GO
+CREATE PROC SP_ELIMINARPAGO
+(
+    @id_pago INT,
+    @Respuesta BIT OUTPUT,
+    @Mensaje VARCHAR(200) OUTPUT
+)
+AS
+BEGIN
+    SET @Respuesta = 1;
+
+    -- Verificar si ya está eliminado
+    IF EXISTS (SELECT 1 FROM dbo.Pago WHERE id_pago = @id_pago AND activo = 0)
+    BEGIN
+        SET @Respuesta = 0;
+        SET @Mensaje = 'La forma de pago ya se encuentra eliminada.';
+        RETURN;
+    END
+
+    -- Verificar si está asociado a algún pedido
+    IF EXISTS (
+        SELECT 1 FROM dbo.Pedido WHERE Id_Pago = @id_pago
+    )
+    BEGIN
+        SET @Respuesta = 0;
+        SET @Mensaje = 'La forma de pago está asociada a pedidos y no puede eliminarse.';
+    END
+    ELSE
+    BEGIN
+        UPDATE dbo.Pago
+        SET activo = 0
+        WHERE Id_Pago = @id_pago;
+
+        SET @Mensaje = 'Forma de pago eliminada exitosamente.';
+        SET @Respuesta = 1;
+    END
+END
+
+
+------------------------------------------------------------------------------------------------
+--------------------------------------TABLA MESAS-----------------------------------------------
+------------------------------------------------------------------------------------------------
+-- SP_REGISTROMESA
+GO
+CREATE OR ALTER PROC SP_REGISTROMESA
+(
+    @cap_personas_max INT,
+    @ocupado INT,
+    @activo INT,
+    @Respuesta INT OUTPUT,
+    @Mensaje VARCHAR(200) OUTPUT
+)
+AS
+BEGIN
+    SET @Respuesta = 0
+    SET @Mensaje = ''
+
+    INSERT INTO dbo.Mesa (Cap_Personas_Max, Ocupado, Activo)
+    VALUES (@cap_personas_max, @ocupado, @activo)
+
+    SET @Respuesta = SCOPE_IDENTITY();
+    SET @Mensaje = 'Mesa creada exitosamente.'
+END
+
+GO
+CREATE OR ALTER PROC SP_EDITARMESA
+(
+    @id_mesa INT,
+    @cap_personas_max INT,
+    @ocupado INT,
+    @activo INT,
+    @Respuesta INT OUTPUT,
+    @Mensaje VARCHAR(200) OUTPUT
+)
+AS
+BEGIN
+    SET @Respuesta = 0
+    SET @Mensaje = ''
+
+    -- Verificar si la mesa está inactiva
+    IF EXISTS (SELECT 1 FROM dbo.Mesa WHERE Id_Mesa = @id_mesa AND Activo = 0)
+    BEGIN
+        -- Si está inactiva, permitir solo reactivarla
+        IF @activo = 1
+        BEGIN
+            UPDATE dbo.Mesa SET
+                Activo = @activo
+            WHERE Id_Mesa = @id_mesa
+
+            SET @Respuesta = 1
+            SET @Mensaje = 'Mesa reactivada exitosamente.'
+            RETURN
+        END
+        ELSE
+        BEGIN
+            SET @Respuesta = 0
+            SET @Mensaje = 'No se pueden editar los campos de una mesa dada de baja.' + CHAR(13) + CHAR(10) + 'Primero debe reactivarse.'
+            RETURN
+        END
+    END
+
+    -- Si la mesa está activa, permitir editar todos los campos
+    UPDATE dbo.Mesa
+    SET Cap_Personas_Max = @cap_personas_max,
+        Ocupado = @ocupado,
+        Activo = @activo
+    WHERE Id_Mesa = @id_mesa
+
+    SET @Respuesta = 1
+    SET @Mensaje = 'Mesa actualizada exitosamente.'
+END
+
+--SP_ELIMINARMESA
+GO
+CREATE OR ALTER PROC SP_ELIMINARMESA
+(
+    @id_mesa INT,
+    @Respuesta BIT OUTPUT,
+    @Mensaje VARCHAR(200) OUTPUT
+)
+AS
+BEGIN
+    SET @Respuesta = 1
+    SET @Mensaje = ''
+
+    -- Verificar si la mesa ya está eliminada
+    IF EXISTS (SELECT 1 FROM dbo.Mesa WHERE Id_Mesa = @id_mesa AND Activo = 0)
+    BEGIN
+        SET @Respuesta = 0
+        SET @Mensaje = 'La mesa ya se encuentra eliminada.'
+        RETURN
+    END
+
+    -- Validar que no exista una asociación en la tabla Pedido
+    IF EXISTS (
+        SELECT 1
+        FROM dbo.Pedido
+        WHERE Id_Mesa = @id_mesa
+    )
+    BEGIN
+        SET @Respuesta = 0
+        SET @Mensaje = 'La mesa está asociada a pedidos existentes.'
+        RETURN
+    END
+
+    -- Eliminar lógicamente (marcar como inactiva)
+    UPDATE dbo.Mesa
+    SET Activo = 0
+    WHERE Id_Mesa = @id_mesa
+
+    SET @Mensaje = 'Mesa eliminada exitosamente.'
+END
+
+------------------------------------------------------------------------------------------------
+------------------------------------TABLA PEDIDOS-----------------------------------------------
+------------------------------------------------------------------------------------------------
+/* REGISTRO DE PEDIDOS*/
+--Parametros a utilizar para registrar una venta
+CREATE TYPE [dbo].[EDetalle_Factura] AS TABLE (
+	[id_producto] int null,
+	[cantidad] int null,
+	[subtotal] decimal(18,2) null,
+	[precio] float null
+)
+
+GO
+CREATE PROC SP_REGISTRODEVENTAS
+(
+	@id_usuario INT,
+	@id_pago INT,
+	@id_mesa INT,
+	@importe_total DECIMAL(18,2),
+	@DetalleVenta [EDetalle_factura] READONLY,
+	@Respuesta BIT OUTPUT,
+	@Mensaje VARCHAR(200) OUTPUT
+)
+AS
+BEGIN
+	BEGIN TRY
+		DECLARE @id_pedido INT = 0
+		DECLARE @nombre_producto_insuficiente VARCHAR(100) = NULL
+		SET @Respuesta = 1
+		SET @Mensaje = ''
+
+		-- Comprobar el stock suficiente para cada producto
+		IF EXISTS (
+			SELECT 1
+			FROM @DetalleVenta dv
+			INNER JOIN producto p ON dv.id_producto = p.id_producto
+			WHERE dv.cantidad > p.stock
+		)
+		BEGIN
+			-- Obtener el nombre del primer producto con stock insuficiente
+			SELECT TOP 1 @nombre_producto_insuficiente = p.nombre
+			FROM @DetalleVenta dv
+			INNER JOIN producto p ON dv.id_producto = p.id_producto
+			WHERE dv.cantidad > p.stock
+
+			SET @Respuesta = 0
+			SET @Mensaje = 'Stock insuficiente para el producto: ' + @nombre_producto_insuficiente + '. Vuelva a consultar.'
+			RETURN
+		END
+
+		BEGIN TRANSACTION registro
+
+			-- Registrar en Pedido
+			INSERT INTO Pedido(Id_Usuario, Id_Pago, Total, Fecha, Id_Mesa)
+			VALUES (@id_usuario, @id_pago, @importe_total, CONVERT(VARCHAR, GETDATE(), 103), @id_mesa)
+
+			-- Obtener ID generado
+			SET @id_pedido = SCOPE_IDENTITY()
+
+			-- Insertar detalles del pedido
+			INSERT INTO Pedido_Detalle(Id_Producto, Id_Pedido, Cantidad, Subtotal, Precio)
+			SELECT id_producto, @id_pedido, cantidad, subtotal, precio FROM @DetalleVenta
+
+		COMMIT TRANSACTION registro
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRANSACTION registro
+		SET @Respuesta = 0
+		SET @Mensaje = ERROR_MESSAGE()
+	END CATCH
 END
