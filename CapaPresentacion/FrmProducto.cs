@@ -189,6 +189,24 @@ namespace CapaPresentacion
         // Botón para validar los campos
         private bool ValidarCampos()
         {
+            // Validación general
+            if (
+                string.IsNullOrWhiteSpace(txtIndice.Text) ||
+                string.IsNullOrWhiteSpace(txtnombre.Text) ||
+                string.IsNullOrWhiteSpace(txtdescripcion.Text) ||
+                string.IsNullOrWhiteSpace(txtprecio.Text) ||
+                !decimal.TryParse(txtprecio.Text, out _) ||
+                string.IsNullOrWhiteSpace(txtstock.Text) ||
+                !int.TryParse(txtstock.Text, out _) ||
+                string.IsNullOrWhiteSpace(txtstockmin.Text) ||
+                !int.TryParse(txtstockmin.Text, out _) ||
+                cbomenu.SelectedIndex < 0 ||
+                cboestado.SelectedIndex < 0
+            )
+            {
+                MessageBox.Show("Debe completar todos los campos.", "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
             if (string.IsNullOrWhiteSpace(txtIndice.Text))
             {
                 MessageBox.Show("Por favor, ingrese el código del producto.", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);

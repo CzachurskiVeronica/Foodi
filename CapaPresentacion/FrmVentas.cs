@@ -6,6 +6,7 @@ using CapaPresentacion.Modales;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.tool.xml;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CapaPresentacion
 {
@@ -44,6 +46,22 @@ namespace CapaPresentacion
 
         private void FrmVentas_Load(object sender, EventArgs e)
         {
+            // Validación: si no hay productos activos cargados
+            List<Producto> productos = new CN_Producto().Listar().Where(p => p.Activo == 1).ToList();
+
+            if (productos.Count == 0)
+            {
+                MessageBox.Show("Menú vacío. Registre los productos primero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            // Validación: si no hay productos activos cargados
+            List<Mesa> mesas = new CN_Mesa().Listar().Where(p => p.Activo == 1).ToList();
+
+            if (mesas.Count == 0)
+            {
+                MessageBox.Show("No hay mesas activas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
             // Valores para ser mostrados de los pagos de la capa de negocio
             List<Pago> pagos = new CN_Pago().Listar();
 
@@ -123,6 +141,11 @@ namespace CapaPresentacion
             {
                 // Busca en la lista de productos el codigo de producto y a su vez que este activo
                 Producto producto = new CN_Producto().Listar().Where(p => p.Nombre == (textProducto.Text) && p.Activo == 1).FirstOrDefault();
+
+                if(producto == null)
+                {
+                    MessageBox.Show("Menú vacío. Registre los productos primero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
 
                 if (producto != null)
                 {
