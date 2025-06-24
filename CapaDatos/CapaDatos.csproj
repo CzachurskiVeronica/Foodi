@@ -49,8 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CD_Mesa.cs" />
+    <Compile Include="CD_Negocio.cs" />
     <Compile Include="CD_Pago.cs" />
     <Compile Include="CD_Producto.cs" />
+    <Compile Include="CD_ReporteVenta.cs" />
     <Compile Include="CD_Rol.cs" />
     <Compile Include="CD_Usuario.cs" />
     <Compile Include="CD_Menu.cs" />

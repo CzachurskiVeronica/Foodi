@@ -44,7 +44,7 @@ namespace CapaPresentacion
         {
             // Asigna el cursor de mano a los íconos del menú
             usuario.MouseEnter += Icon_MouseEnter;
-            //iconReportes.MouseEnter += Icon_MouseEnter;
+            reportes.MouseEnter += Icon_MouseEnter;
             productos.MouseEnter += Icon_MouseEnter;
             carta.MouseEnter += Icon_MouseEnter;
             pedidos.MouseEnter += Icon_MouseEnter;
@@ -61,32 +61,27 @@ namespace CapaPresentacion
             mesas.Visible = false;
             pagos.Visible = false;
             carta.Visible = false;
-            //iconReportes.Visible = false;
+            reportes.Visible = false;
 
             // Rutas que el usuario podra navegar si es Administrador
-            if (rolesUsuario.Any(rol => rol.Id_Rol == 1))
+            if (rolesUsuario.Any(rol => rol.Id_Rol == 3))
             {
                 usuario.Visible = true;
-                carta.Visible = true;
-                mesas.Visible = true;
-                pagos.Visible = true;
-                pedidos.Visible = true;
-                //iconDashboard.Visible = true;
+                reportes.Visible = true;
             }
 
             // Rutas que el usuario podra navegar si es Encargado
             if (rolesUsuario.Any(rol => rol.Id_Rol == 2))
             {
-                //iconReportes.Visible = true;
-                usuario.Visible = true;
                 carta.Visible = true;
                 mesas.Visible = true;
                 pagos.Visible = true;
                 pedidos.Visible = true;
+                productos.Visible = true;
             }
 
             // Rutas que el usuario podra navegar si es Mozo
-            if (rolesUsuario.Any(rol => rol.Id_Rol == 3))
+            if (rolesUsuario.Any(rol => rol.Id_Rol == 1))
             {
                 pedidos.Visible = true;
             }
@@ -205,6 +200,11 @@ namespace CapaPresentacion
         private void iconVenta_Click(object sender, EventArgs e)
         {
             AbrirForm((IconMenuItem)sender, new FrmVentas(actualUser));
+        }
+
+        private void reportes_Click(object sender, EventArgs e)
+        {
+            AbrirForm((IconMenuItem)sender, new FormNegocio());
         }
     }
 }

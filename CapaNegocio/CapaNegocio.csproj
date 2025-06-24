@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="CN_Menu.cs" />
     <Compile Include="CN_Mesa.cs" />
+    <Compile Include="CN_Reporte.cs" />
     <Compile Include="CN_Pago.cs" />
     <Compile Include="CN_Producto.cs" />
     <Compile Include="CN_Rol.cs" />

@@ -35,6 +35,7 @@
             this.pagos = new FontAwesome.Sharp.IconMenuItem();
             this.mesas = new FontAwesome.Sharp.IconMenuItem();
             this.pedidos = new FontAwesome.Sharp.IconMenuItem();
+            this.reportes = new FontAwesome.Sharp.IconMenuItem();
             this.menuacerca = new FontAwesome.Sharp.IconMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.label1 = new System.Windows.Forms.Label();
@@ -56,6 +57,7 @@
             this.pagos,
             this.mesas,
             this.pedidos,
+            this.reportes,
             this.menuacerca});
             this.menu.Location = new System.Drawing.Point(0, 103);
             this.menu.Name = "menu";
@@ -163,6 +165,22 @@
             this.pedidos.Text = "Pedidos";
             this.pedidos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.pedidos.Click += new System.EventHandler(this.iconVenta_Click);
+            // 
+            // reportes
+            // 
+            this.reportes.AutoSize = false;
+            this.reportes.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.reportes.ForeColor = System.Drawing.Color.Black;
+            this.reportes.IconChar = FontAwesome.Sharp.IconChar.Sistrix;
+            this.reportes.IconColor = System.Drawing.Color.Black;
+            this.reportes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.reportes.IconSize = 60;
+            this.reportes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.reportes.Name = "reportes";
+            this.reportes.Size = new System.Drawing.Size(150, 100);
+            this.reportes.Text = "Reportes";
+            this.reportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.reportes.Click += new System.EventHandler(this.reportes_Click);
             // 
             // menuacerca
             // 
@@ -280,6 +298,7 @@
         private System.Windows.Forms.Label label2;
         private FontAwesome.Sharp.IconMenuItem pagos;
         private FontAwesome.Sharp.IconMenuItem pedidos;
+        private FontAwesome.Sharp.IconMenuItem reportes;
     }
 }
 
