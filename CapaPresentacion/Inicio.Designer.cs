@@ -196,6 +196,7 @@
             this.menuacerca.Size = new System.Drawing.Size(150, 100);
             this.menuacerca.Text = "Acerca de";
             this.menuacerca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menuacerca.Click += new System.EventHandler(this.menuacerca_Click);
             this.menuacerca.MouseEnter += new System.EventHandler(this.menuacerca_MouseEnter);
             // 
             // menuStrip1

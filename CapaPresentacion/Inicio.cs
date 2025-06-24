@@ -206,5 +206,10 @@ namespace CapaPresentacion
         {
             AbrirForm((IconMenuItem)sender, new FormNegocio());
         }
+
+        private void menuacerca_Click(object sender, EventArgs e)
+        {
+            AbrirForm((IconMenuItem)sender, new FormsPrueba());
+        }
     }
 }
