@@ -63,6 +63,11 @@ namespace CapaPresentacion
             // Mostrar todos los productos
             List<Producto> listaProductos = new CN_Producto().Listar();
 
+            if(listaProductos.Count == 0)
+            {
+                // Muestra el mensaje de éxito
+                MessageBox.Show("No hay productos disponibles", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            } 
             // Recorre los roles de productos existentes para elegir al momento de crear un producto
             foreach (Producto productos in listaProductos)
             {
